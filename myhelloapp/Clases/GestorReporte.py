@@ -35,25 +35,25 @@ class GestorReporte:
         elif(tipo=="15"):
             return "parametros15"
         elif(tipo=="16"):
-            return ""
+            return "parametros16"
         elif(tipo=="17"):
-            return ""
+            return "parametros17"
         elif(tipo=="18"):
-            return ""
+            return "parametros18"
         elif(tipo=="19"):
-            return ""
+            return "parametros19"
         elif(tipo=="20"):
-            return ""
+            return "parametros20"
         elif(tipo=="21"):
-            return ""
+            return "parametros21"
         elif(tipo=="22"):
-            return ""
+            return "parametros22"
         elif(tipo=="23"):
-            return ""
+            return "parametros23"
         elif(tipo=="24"):
-            return ""
+            return "parametros24"
         elif(tipo=="25"):
-            return ""
+            return "parametros25"
         
     def obtenerTitulo(self,tipo):
         

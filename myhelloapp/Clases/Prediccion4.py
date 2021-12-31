@@ -104,5 +104,34 @@ class Prediccion4:
         plt.savefig('./helloworld/static/img.png')
         plt.cla()
         
-    
+    def analizar6(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max,region):
+        dataTemp = pd.read_csv('archivo.csv')
+        
+        if(filtrar=="si"):
+            
+            #dataTemp = pd.read_csv('archivo.csv')
+            newData = dataTemp[columnaFiltrar] == valorFiltrar
+            data = dataTemp[newData]
+            
+            dataTemp=data
+
+        # dataTemp[dias]= pd.to_datetime(dataTemp[dias])
+        # dataTemp[dias]=dataTemp[dias].map(dt.datetime.toordinal)
+        X = np.asarray(dataTemp[dias].array)[:,np.newaxis]
+        Y = np.asarray(dataTemp[infectados])[:,np.newaxis]
+        
+        #AJUSTAMOS EL MODELO
+        linear_regressor = LinearRegression()
+        linear_regressor.fit(X, Y)
+        Y_pred = linear_regressor.predict(X)
+        #Creamos la grafica
+        title = "Analisis del Numero de muertes en un pais"+valorFiltrar+"\n"+'Modelo: Y = ' + str(linear_regressor.coef_[0][0]) + 'X+' + str(linear_regressor.intercept_[0])
+        plt.title("Regresion lineal polinomial \n" + title, fontsize=9)
+        plt.xlabel("Eje X "+dias)
+        plt.ylabel("Eje Y "+infectados)
+        plt.scatter(X, Y)
+        plt.plot(X, Y_pred, color='red')
+        plt.savefig('./helloworld/static/img.png')
+        plt.cla()
+
         

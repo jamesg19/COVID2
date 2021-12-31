@@ -182,3 +182,48 @@ def Reporte5(request):
     return render(request,'reporte.html',context)
     
     
+def Reporte6(request):
+    variable1 = request.POST['variable1']
+    variable2 = request.POST['variable2']
+
+    filtrar=request.POST['filtrar']
+    columnaFiltrar=""
+    valorFiltrar=""
+    
+    if(filtrar=="si"):
+        columnaFiltrar=request.POST['columnaFiltrar']
+        valorFiltrar=request.POST['valorFiltrar']
+    
+    
+    reporte4=Prediccion4();
+    reporte4.analizar6 (variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
+    
+    titulo="Análisis del número de muertes por coronavirus en un País."
+    descripcion=""
+    
+    context={
+        "titulo":titulo,
+        "descripcion":descripcion,
+    }
+    
+    return render(request,'reporte.html',context)
+def Reporte7(request):
+    pass
+def Reporte8(request):
+    pass
+def Reporte9(request):
+    pass
+def Reporte10(request):
+    pass
+def Reporte11(request):
+    pass
+def Reporte12(request):
+    pass
+def Reporte13(request):
+    pass
+def Reporte14(request):
+    pass
+def Reporte15(request):
+    pass
+def Reporte16(request):
+    pass
