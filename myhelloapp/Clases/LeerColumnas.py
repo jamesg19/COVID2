@@ -11,7 +11,7 @@ class LeerColumnas:
     def __init__(self):
         pass
     def Parametros(self):
-        print("a")
+
         data = pd.read_csv('archivo.csv')
         # variable="<select class=\"custom-select\"  id=\"variable1\" name=\"variable1\">\n"
         # for i in data.columns.values:

@@ -8,6 +8,7 @@ from os import remove
 from myhelloapp.Clases.GestorReporte import GestorReporte
 from myhelloapp.Clases.LeerColumnas import LeerColumnas
 from myhelloapp.Clases.Prediccion1 import Prediccion1
+from myhelloapp.Clases.Prediccion2 import Prediccion2
 # Create your views here.
 
 #james= Django(__name__)
@@ -19,8 +20,6 @@ def home(request):
 def procesarArchivo(request):
     filee = request.POST['area']
     tipoReporte=request.POST['tipoReporte']
-    print("///////////////////////////GUARDA UN ARCHIVO////////////////////////////////////")
-    print(filee)
    
     try:
         remove("archivo.csv")
@@ -29,6 +28,7 @@ def procesarArchivo(request):
         pass
     try:
         remove("./helloworld/static/img.png")
+        print("IMAGEEEEEEEN CORRECTAMENTEE")
     except:
         pass
     try:
@@ -60,11 +60,52 @@ def procesarArchivo(request):
     
     return render(request,ventana+'.html',context)
 
-# /Reporte1
+# Tendencia de la infección por Covid-19 en un País. 
 def Reporte1(request):
     
     variable1 = request.POST['variable1']
     variable2 = request.POST['variable2']
+    filtrar=request.POST['filtrar']
+    columnaFiltrar=""
+    valorFiltrar=""
+    min = request.POST['min']
+    max = request.POST['max']
+    print("JAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    print(min)
+    print(max)
+    
+    
+    if(filtrar=="si"):
+        columnaFiltrar=request.POST['columnaFiltrar']
+        valorFiltrar=request.POST['valorFiltrar']
+    
+    reporte1=Prediccion1();
+    reporte1.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
+    
+    titulo="Tendencia de infeccion en un pais"
+    try:
+        remove("archivo.csv")
+        remove("archivoT.csv")
+        print("ELIMINADO CORRECTAMENTEE ARCHIVOS")
+    except:
+        print("_____________==================__________________")
+        pass
+
+    context={
+        "titulo":titulo,
+        #APP CONFIG
+    }
+    
+    return render(request,'reporte.html',context)
+
+
+# PREDICCION DE INFECTADOS DE UN PAIS
+def Reporte2(request):
+    
+    variable1 = request.POST['variable1']
+    variable2 = request.POST['variable2']
+    min = request.POST['min']
+    max = request.POST['max']
     filtrar=request.POST['filtrar']
     columnaFiltrar=""
     valorFiltrar=""
@@ -74,17 +115,32 @@ def Reporte1(request):
         valorFiltrar=request.POST['valorFiltrar']
     
     
+    reporte1=Prediccion2();
+    reporte1.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
     
-    reporte1=Prediccion1();
-    reporte1.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar)
-    
-    titulo="Tendencia de infeccion en un pais"
-    
+    titulo="PREDICCION DE INFECTADOS DE UN PAIS"
+    try:
+        remove("archivo.csv")
+        remove("archivoT.csv")
+        print("ELIMINADO CORRECTAMENTEE ARCHIVOS")
+    except:
+        print("_____________==================__________________")
+        pass
+
     context={
         "titulo":titulo,
         #APP CONFIG
     }
     
     return render(request,'reporte.html',context)
+
+def Reporte3(request):
+    pass
+
+def Reporte4(request):
+    pass
+
+def Reporte5(request):
+    pass
     
     

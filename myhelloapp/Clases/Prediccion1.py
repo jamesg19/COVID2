@@ -1,8 +1,9 @@
+from os import remove
+import random
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.pyplot as plt
-
 
 import numpy as np
 import pandas as pd
@@ -12,20 +13,24 @@ class Prediccion1:
         pass
 
     
-    def analizar(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar):
+    def analizar(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max):
         
-
+        dataTemp = pd.read_csv('archivo.csv')
+        
         if(filtrar=="si"):
-            dataTemp = pd.read_csv('archivo.csv')
+            
+            #dataTemp = pd.read_csv('archivo.csv')
             newData = dataTemp[columnaFiltrar] == valorFiltrar
             data = dataTemp[newData]
             
+            dataTemp=data
+            print(dataTemp)
             x = np.asarray(data[dias].array)[:,np.newaxis]
             y = np.asarray(data[infectados].array)[:,np.newaxis]
-        else:
-            data = pd.read_csv('archivo.csv')
-            x = np.asarray(data[dias].array)[:,np.newaxis]
-            y = np.asarray(data[infectados].array)[:,np.newaxis]
+        
+            
+        x = np.asarray(dataTemp[dias].array)[:,np.newaxis]
+        y = np.asarray(dataTemp[infectados].array)[:,np.newaxis]
         
         plt.scatter(x,y)
         
@@ -43,8 +48,8 @@ class Prediccion1:
         r2 = r2_score(y, y_new)
 
         # prediction
-        x_new_min = 0.0
-        x_new_max = 50.0
+        x_new_min = int(min)*1.0
+        x_new_max = int(max)*1.0
 
         x_new = np.linspace(x_new_min, x_new_max, 50)
         x_new = x_new[:,np.newaxis]
@@ -58,7 +63,17 @@ class Prediccion1:
         plt.xlim(x_new_min,x_new_max)
         plt.ylim(0,1000)
         title = 'Degree = {}; RMSE = {}; R2 = {}'.format(poly_degree, round(rmse,2), round(r2,2))
-        plt.title("Prediction of Infection of Covid-19 in Guatemala\n " + title, fontsize=10)
+        plt.title("Prediccion de infectado de COVID en "+valorFiltrar+"\n" + title, fontsize=10)
         plt.xlabel('x')
         plt.ylabel('y')
+        try:
+            remove("./helloworld/static/img.png")
+            print("IMAGEN ANTERIOR ELIMINADA")
+        except:
+            print("imagenn anterior sin eliminar")
+        #numero = random.randint(1, 6)
+        #plt.savefig("./helloworld/static/"+str(numero)+".png")
+        
         plt.savefig('./helloworld/static/img.png')
+        plt.cla()
+        

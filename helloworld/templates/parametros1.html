@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>COVID</title>
-    <link rel="stylesheet" href="{% static 'assetsNav/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static '/assetsNav/bootstrap/css/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{% static '/assetsNav/fonts/ionicons.min.css'%}">
     <link rel="stylesheet" href="{% static '/assetsNav/css/gradient-navbar-1.css'%}">
     <link rel="stylesheet" href="{% static '/assetsNav/css/gradient-navbar.css'%}">
     <link rel="stylesheet" href="{% static '/assetsNav/css/styles.css'%}">
+    <link rel="stylesheet" href="{% static '/slide/slide.css'%}">
     <script type="text/javascript" src='https://unpkg.com/xlsx/dist/shim.min.js'></script>
     <script lang="javascript" src='https://unpkg.com/xlsx/dist/xlsx.full.min.js' ></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -56,6 +57,56 @@
         <div class="col">
         </div>
     </div>
+    <br>
+    <div class="row" >
+      
+      <div class="col">
+      </div>
+      <div class="col">
+      
+          <div class="slidecontainer">
+            <input type="range" min="0" max="100" class="slider" id="min" name="min">
+            <p>MINIMO: <span id="demo1"></span></p>
+          </div>
+      </div>
+
+      <div class="col">
+      
+        <div class="slidecontainer">
+          <input type="range" min="1" max="400" class="slider" id="max" name="max">
+          <p>MAXIMO DIAS: <span id="demo2"></span></p>
+        </div>
+      </div>
+      <div class="col">
+      </div>
+        <script>
+            var slider1 = document.getElementById("min");
+            var output1 = document.getElementById("demo1");
+            output1.innerHTML = slider1.value;
+            
+            slider1.oninput = function() {
+              slider1.value=this.value;
+              output1.innerHTML = this.value;
+            }
+        </script>
+        <script>
+          var slider2 = document.getElementById("max");
+          var output = document.getElementById("demo2");
+          output.innerHTML = slider2.value;
+          
+          slider2.oninput = function() {
+            slider2.value=this.value;
+            output.innerHTML = this.value;
+          }
+      </script>
+    </div>
+
+    
+
+
+
+
+
     <div class="row">
       <div class="col">
       </div>
@@ -90,76 +141,7 @@
 
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script>
-      function handleFileSelect() {
-        
-        //file es el id del boton fichero
-        var text="";
-        const input = document.getElementById('file1');
-        //area es el id del text area donde se va a escribir
-        const editor=document.getElementById('area');
-        //const code = document.getElementById('code');
-        if (input.files.length > 0) {
-            readFile(input.files[0]);
-        }
-        function readFile(file) {
-          const reader = new FileReader();
-          reader.onload = function () {
-            
-              editor.value = reader.result;
-              text = document.getElementById("area").value;
-              ////console.log({text});
-              ////console.log(JSON.stringify({text}));
-              //alert(text);
-              
-              //editor.value='aaaaaa';
-          },
-                  reader.readAsText(file);
-        }
-        //console.log("CONERTIR A CSV");
-        //convertXlsx_To_Csv();
-      }
-      
-
-      function subir(){
-        //file es el id del boton fichero
-        var text="";
-        const input = document.getElementById('file1');
-        //area es el id del text area donde se va a escribir
-        const editor=document.getElementById('area');
-        //const code = document.getElementById('code');
-        if (input.files.length > 0) {
-            readFile(input.files[0]);
-        }
-        function readFile(file) {
-          const reader = new FileReader();
-          reader.onload = function () {
-            
-              editor.value = reader.result;
-              text = document.getElementById("area").value;
     
-              //alert(text);
-              
-              //editor.value='aaaaaa';
-          },
-                  reader.readAsText(file);
-        }
-        
-
-        /*const body={}
-        $.ajax({
-          method:"POST",
-          url:"procesarArchivo",
-          data: {nombre:"James", apellido: "Gramajo"}
-        })
-        .done( function(){
-          alert('todo bien');
-        })
-        .fail(function(){
-          alert('todo mal');
-        })*/
-      }
-    </script>
     <script src="{% static '/assetsNav/bootstrap/js/bootstrap.min.js'%}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -168,75 +150,5 @@
 
 
 </body>
-<script>
-  //CONVERT XLS TO CSV
-  function convertXlsx_To_Csv(){
-
-    const file=document.getElementById('file1').files[0];
-    console.log("FILE "+file)
-
-    file.arrayBuffer().then((res)=>{
-        let data= new Uint8Array(res);
-        let workbook=XLSX.read(data,{type:"array"});
-        let first_sheet_name=workbook.SheetNames[0];
-        console.log("Sheet name",first_sheet_name);
-        let worksheet=workbook.Sheets[first_sheet_name]
-        //convertimos a json
-        let jsonData= XLSX.utils.sheet_to_json(worksheet,{raw:true});
-        //console.log("JSON ",jsonData);
-
-        let json= jsonData.map((x)=>({
-          ...x,
-        }))
-        console.log("james",json);
-        alert(JSON.stringify(json));
-        let fileNameWithout=file.name.substring(0,file.name.indexOf("."));
-        let new_worksheet=XLSX.utils.json_to_sheet(json);
-        let new_workbook=XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(new_workbook,new_worksheet,"CSV_SHEET");
-
-        //XLSX.writeFile(new_workbook,fileNameWithout+".csv");
-    });
-
-
-  }
-  function convertXlsx_To_Csv(){
-
-    const file=document.getElementById('file1').files[0];
-    console.log("FILE "+file)
-
-    file.arrayBuffer().then((res)=>{
-        let data= new Uint8Array(res);
-        let workbook=XLSX.read(data,{type:"array"});
-        let first_sheet_name=workbook.SheetNames[0];
-        console.log("Sheet name",first_sheet_name);
-        let worksheet=workbook.Sheets[first_sheet_name]
-        //convertimos a json
-        let jsonData= XLSX.utils.sheet_to_json(worksheet,{raw:true});
-        //console.log("JSON ",jsonData);
-
-        let json= jsonData.map((x)=>({
-          ...x,
-          //console.log("x ",x);
-        }))
-        
-        alert(JSON.stringify(json));
-        let fileNameWithout=file.name.substring(0,file.name.indexOf("."));
-        let new_worksheet=XLSX.utils.json_to_sheet(json);
-        let new_workbook=XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(new_workbook,new_worksheet,"CSV_SHEET");
-        //console.log(new_workbook);
-        //console.log(XLSX.utils.sheet_to_txt("aaaa,b");
-        //XLSX.writeFile(new_workbook,fileNameWithout+".csv");
-
-        //onchange="handleFileSelect()"
-
-    });
-
-
-  }
-
-
-</script>
 
 </hmtl>
