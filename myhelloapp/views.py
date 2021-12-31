@@ -207,10 +207,44 @@ def Reporte6(request):
     }
     
     return render(request,'reporte.html',context)
+
+
+
 def Reporte7(request):
     pass
+
+
 def Reporte8(request):
-    pass
+    variable1 = request.POST['variable1']
+    variable2 = request.POST['variable2']
+
+    filtrar=request.POST['filtrar']
+    columnaFiltrar=""
+    valorFiltrar=""
+    
+    if(filtrar=="si"):
+        columnaFiltrar=request.POST['columnaFiltrar']
+        valorFiltrar=request.POST['valorFiltrar']
+    
+    
+    reporte4=Prediccion4();
+    reporte4.analizar8("",variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
+    
+    titulo="Predicción de casos de un país para un año."
+    descripcion=""
+    
+    context={
+        "titulo":titulo,
+        "descripcion":descripcion,
+    }
+    
+    return render(request,'reporte.html',context)
+
+
+
+
+
+
 def Reporte9(request):
     pass
 def Reporte10(request):
