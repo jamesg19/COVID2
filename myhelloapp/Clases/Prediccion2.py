@@ -11,17 +11,21 @@ class Prediccion2:
     #PREDICCION DE INFECTADOS DE UN PAIS
     def analizar(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max):
         
+        dataTemp = pd.read_csv('archivo.csv')
+        
         if(filtrar=="si"):
-            dataTemp = pd.read_csv('archivo.csv')
+            
+            #dataTemp = pd.read_csv('archivo.csv')
             newData = dataTemp[columnaFiltrar] == valorFiltrar
             data = dataTemp[newData]
             
+            dataTemp=data
+            print(dataTemp)
             X = np.asarray(data[dias].array)[:,np.newaxis]
             Y = np.asarray(data[infectados].array)[:,np.newaxis]
-        else:
-            data = pd.read_csv('archivo.csv')
-            X = np.asarray(data[dias].array)[:,np.newaxis]
-            Y = np.asarray(data[infectados].array)[:,np.newaxis]
+            
+        X = np.asarray(dataTemp[dias].array)[:,np.newaxis]
+        y = np.asarray(dataTemp[infectados].array)[:,np.newaxis]
 
 
         plt.scatter(X,Y)  
@@ -39,10 +43,10 @@ class Prediccion2:
         rmse = np.sqrt(mean_squared_error(Y,Y_NEW)) 
         r2 = r2_score(Y,Y_NEW)  
 
-        x_new_min = min 
-        x_new_max = max
+        x_new_min = int(min)
+        x_new_max = int(max)
 
-        X_NEW = np.linspace(x_new_min, x_new_max, 50) 
+        X_NEW = np.linspace(x_new_min, x_new_max, int(max)) 
         X_NEW = X_NEW[:,np.newaxis]  
 
         X_NEW_TRANSF = polynomial_features.fit_transform(X_NEW)  

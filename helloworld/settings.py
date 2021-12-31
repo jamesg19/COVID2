@@ -56,7 +56,7 @@ ROOT_URLCONF = 'helloworld.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-         'DIRS': [str(pathlib.Path(__file__).parent.absolute())+"/templates"],
+         'DIRS': [str(pathlib.Path(__file__).parent.absolute())+"/templates",str(pathlib.Path(__file__).parent.absolute())+"/templates/Parametros"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

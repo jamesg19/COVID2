@@ -55,12 +55,12 @@ class GestorReporte:
         elif(tipo=="25"):
             return ""
         
-    def obtenerTexto(self,tipo):
+    def obtenerTitulo(self,tipo):
         
         if(tipo=="1"):
             return "Tendencia de infeccion en un pais"
         elif(tipo=="2"):
-            return "Predicción de Infertados en un País"
+            return "Predicción de Infectados en un País"
         elif(tipo=="3"):
             return "Indice de Progresión de la pandemia"
         elif(tipo=="4"):

@@ -47,9 +47,9 @@ def procesarArchivo(request):
         return render(request,'principal.html')
     # #reconocer columnas
     columnas= LeerColumnas()
-    #predic.analizar()
+    gestor=GestorReporte()
     
-    titulo="Tendencia de infeccion en un pais"
+    titulo=gestor.obtenerTitulo(tipoReporte)
     context={
         "titulo":titulo,
         "variable1":columnas.Parametros()
@@ -70,7 +70,7 @@ def Reporte1(request):
     valorFiltrar=""
     min = request.POST['min']
     max = request.POST['max']
-    print("JAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
     print(min)
     print(max)
     
@@ -83,13 +83,7 @@ def Reporte1(request):
     reporte1.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
     
     titulo="Tendencia de infeccion en un pais"
-    try:
-        remove("archivo.csv")
-        remove("archivoT.csv")
-        print("ELIMINADO CORRECTAMENTEE ARCHIVOS")
-    except:
-        print("_____________==================__________________")
-        pass
+
 
     context={
         "titulo":titulo,
@@ -115,17 +109,10 @@ def Reporte2(request):
         valorFiltrar=request.POST['valorFiltrar']
     
     
-    reporte1=Prediccion2();
-    reporte1.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
+    reporte2=Prediccion2();
+    reporte2.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
     
     titulo="PREDICCION DE INFECTADOS DE UN PAIS"
-    try:
-        remove("archivo.csv")
-        remove("archivoT.csv")
-        print("ELIMINADO CORRECTAMENTEE ARCHIVOS")
-    except:
-        print("_____________==================__________________")
-        pass
 
     context={
         "titulo":titulo,
