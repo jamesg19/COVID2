@@ -23,6 +23,7 @@ def procesarArchivo(request):
     print(filee)
    
     try:
+        remove("archivo.csv")
         remove("archivoT.csv")
     except:
         pass
