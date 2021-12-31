@@ -32,7 +32,7 @@
     <h2>Parametros {{titulo}}</h2>
     <br><br>
 
-    <form action="" enctype="multipart/form-data"  method="POST" >
+    <form action="Reporte1" enctype="multipart/form-data"  method="POST" >
       {% csrf_token %}
       <div class="row">
         <div class="col">
@@ -45,15 +45,40 @@
           </select>
         </div>
         <div class="col">
-          {%for art in variable1 %}
-          <p>
-            <label for="{{art}}">{{art}}</label>
-            <input type="checkbox" value="{{art}}" id="{{art}}" name="{{art}}" class="valores"
-          </p>
-          {% endfor %}
+          <select class="custom-select"  id="variable2" name="variable2">
+            {%for art in variable1 %}
+            <option value="{{art}}">{{art}}</option>
+            {% endfor %}
+          </select>
+
+
         </div>
         <div class="col">
         </div>
+    </div>
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col">
+        <h4>Desea filtar la busqueda?</h4>
+        <label for="" >SI</label>
+        <input type="radio" value="si" name="filtrar" id="filtrar" required class="filtra">
+        <label for="" >NO</label>
+        <input type="radio" value="no" name="filtrar" id="filtrar" required class="filtra">
+        <label for="columnaFiltrar" >Columna que desea filtrar</label>
+        <select class="custom-select"  id="columnaFiltrar" name="columnaFiltrar">
+          {%for art in variable1 %}
+          <option value="{{art}}">{{art}}</option>
+          {% endfor %}
+        </select>
+
+
+        <label for="columnaFiltrar" >Ingresa el parametro de filtrado</label>
+        <input class="form-control mr-sm-2" name="valorFiltrar" id="valorFiltrar" type="text" placeholder="Filtrar" aria-label="Filtrar">
+
+      </div>
+      <div class="col">
+      </div>
     </div>
         <br>
         <br>
