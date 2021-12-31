@@ -60,8 +60,9 @@ class Prediccion1:
         # plot the prediction
         plt.plot(x_new, y_new, color='coral', linewidth=3)
         plt.grid()
-        plt.xlim(x_new_min,x_new_max)
-        plt.ylim(0,1000)
+        # plt.xlim(x_new_min,x_new_max)
+        # plt.ylim(0,10000)
+        
         title = 'Degree = {}; RMSE = {}; R2 = {}'.format(poly_degree, round(rmse,2), round(r2,2))
         plt.title("Prediccion de infectado de COVID en "+valorFiltrar+"\n" + title, fontsize=10)
         plt.xlabel('x')

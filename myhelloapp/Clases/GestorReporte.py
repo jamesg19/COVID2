@@ -11,29 +11,29 @@ class GestorReporte:
         elif(tipo=="3"):
             return "parametros3"
         elif(tipo=="4"):
-            return "Predicción de mortalidad por COVID en un Departamento"
+            return "parametros4"
         elif(tipo=="5"):
-            return "Predicción de mortalidad por COVID en un País"
+            return "parametros5"
         elif(tipo=="6"):
-            return "Análisis del número de muertes por coronavirus en un País"
+            return "parametros6"
         elif(tipo=="7"):
-            return "Tendencia del número de infectados por día de un País"
+            return "parametros7"
         elif(tipo=="8"):
-            return "Predicción de casos de un país para un año"
+            return "parametros8"
         elif(tipo=="9"):
-            return "Tendencia de la vacunación de en un País"
+            return "parametros9"
         elif(tipo=="10"):
-            return "Ánalisis Comparativo de Vacunaciópn entre 2 paises"
+            return "parametros10"
         elif(tipo=="11"):
-            return ""
+            return "parametros11"
         elif(tipo=="12"):
-            return ""
+            return "parametros12"
         elif(tipo=="13"):
-            return ""
+            return "parametros13"
         elif(tipo=="14"):
-            return ""
+            return "parametros14"
         elif(tipo=="15"):
-            return ""
+            return "parametros15"
         elif(tipo=="16"):
             return ""
         elif(tipo=="17"):

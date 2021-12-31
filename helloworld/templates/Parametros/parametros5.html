@@ -33,12 +33,13 @@
     <h2>Parametros {{titulo}}</h2>
     <br><br>
 
-    <form action="Reporte1" enctype="multipart/form-data"  method="POST" >
+    <form action="Reporte5" enctype="multipart/form-data"  method="POST" >
       {% csrf_token %}
       <div class="row">
         <div class="col">
         </div>
         <div class="col">
+          <h4>Selecciona el eje X (tiempo)</h4>
           <select class="custom-select"  id="variable1" name="variable1">
             {%for art in variable1 %}
             <option value="{{art}}">{{art}}</option>
@@ -46,6 +47,7 @@
           </select>
         </div>
         <div class="col">
+          <h4>Decesos eje Y (Casos Covid)</h4>
           <select class="custom-select"  id="variable2" name="variable2">
             {%for art in variable1 %}
             <option value="{{art}}">{{art}}</option>
@@ -65,16 +67,14 @@
       <div class="col">
       
           <div class="slidecontainer">
-            <input type="range" min="0" max="100" value=0 class="slider" id="min" name="min">
-            <p>MINIMO: <span id="demo1"></span></p>
+            <input type="range" min="0" style="display:none" max="100" value=0 class="slider" id="min" name="min">
+            <p style="display:none" >MINIMO: <span id="demo1"></span></p>
           </div>
-      </div>
 
-      <div class="col">
       
         <div class="slidecontainer">
-          <input type="range" min="1" max="900" value="50" class="slider" id="max" name="max">
-          <p>MAXIMO DIAS: <span id="demo2"></span></p>
+          <input type="range" min="1" max="800" value=15 class="slider" id="max" name="max">
+          <p>TIEMPO DE PREDICCION: <span id="demo2"></span></p>
         </div>
       </div>
       <div class="col">
@@ -101,11 +101,6 @@
       </script>
     </div>
 
-    
-
-
-
-
 
     <div class="row">
       <div class="col">
@@ -116,13 +111,12 @@
         <input type="radio" value="si" name="filtrar" id="filtrar" required class="filtra">
         <label for="" >NO</label>
         <input type="radio" value="no" name="filtrar" id="filtrar" required class="filtra">
-        <label for="columnaFiltrar" >Columna que desea filtrar</label>
+        <label for="columnaFiltrar">Columna que desea filtrar</label>
         <select class="custom-select"  id="columnaFiltrar" name="columnaFiltrar">
           {%for art in variable1 %}
           <option value="{{art}}">{{art}}</option>
           {% endfor %}
         </select>
-
 
         <label for="columnaFiltrar" >Ingresa el parametro de filtrado</label>
         <input class="form-control mr-sm-2" name="valorFiltrar" id="valorFiltrar" type="text" placeholder="Filtrar" aria-label="Filtrar">

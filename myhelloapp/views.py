@@ -9,6 +9,7 @@ from myhelloapp.Clases.GestorReporte import GestorReporte
 from myhelloapp.Clases.LeerColumnas import LeerColumnas
 from myhelloapp.Clases.Prediccion1 import Prediccion1
 from myhelloapp.Clases.Prediccion2 import Prediccion2
+from myhelloapp.Clases.Prediccion4 import Prediccion4
 # Create your views here.
 
 #james= Django(__name__)
@@ -39,7 +40,7 @@ def procesarArchivo(request):
         with open('archivoT.csv','r',encoding = 'utf-8') as fr,open('archivo.csv','w',encoding = 'utf-8') as fd:
             for text in fr.readlines():
                     if text.split():
-                            fd.write(text)
+                            fd.write(text.replace(';', ','))
             fd.close
         print('La salida es exitosa ...')
     except:
@@ -110,7 +111,7 @@ def Reporte2(request):
     
     
     reporte2=Prediccion2();
-    reporte2.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
+    reporte2.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
     
     titulo="PREDICCION DE INFECTADOS DE UN PAIS"
 
@@ -124,10 +125,60 @@ def Reporte2(request):
 def Reporte3(request):
     pass
 
+
+
+#Predicción de mortalidad por COVID en un Departamento.
 def Reporte4(request):
-    pass
+    variable1 = request.POST['variable1']
+    variable2 = request.POST['variable2']
+    min = request.POST['min']
+    max = request.POST['max']
+    filtrar=request.POST['filtrar']
+    columnaFiltrar=""
+    valorFiltrar=""
+    
+    if(filtrar=="si"):
+        columnaFiltrar=request.POST['columnaFiltrar']
+        valorFiltrar=request.POST['valorFiltrar']
+    
+    
+    reporte4=Prediccion4();
+    reporte4.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Departamento")
+    
+    titulo="Predicción de mortalidad por COVID en un Departamento"
+
+    context={
+        "titulo":titulo,
+        #APP CONFIG
+    }
+    
+    return render(request,'reporte.html',context)
 
 def Reporte5(request):
-    pass
+    variable1 = request.POST['variable1']
+    variable2 = request.POST['variable2']
+    min = request.POST['min']
+    max = request.POST['max']
+    filtrar=request.POST['filtrar']
+    columnaFiltrar=""
+    valorFiltrar=""
+    
+    if(filtrar=="si"):
+        columnaFiltrar=request.POST['columnaFiltrar']
+        valorFiltrar=request.POST['valorFiltrar']
+    
+    
+    reporte4=Prediccion4();
+    reporte4.analizar5(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
+    
+    titulo="Predicción de mortalidad por COVID en un País"
+    descripcion=""
+    
+    context={
+        "titulo":titulo,
+        "descripcion":descripcion,
+    }
+    
+    return render(request,'reporte.html',context)
     
     
