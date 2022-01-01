@@ -30,17 +30,17 @@
     <br>
     <div align="center">
         <br>
-    <h2>Parametros Reporte9: {{titulo}}</h2>
+    <h2>Parametros Reporte25: {{titulo}}</h2>
     <br><br>
 
-    <form action="Reporte9" enctype="multipart/form-data"  method="POST" >
+    <form action="Reporte25" enctype="multipart/form-data"  method="POST" >
       {% csrf_token %}
       <div class="row">
         <div class="col">
         </div>
         
         <div class="col">
-          <h3>Eje X (Tiempo/Fecha)</h3>
+          <h3>Eje X (Test Realizados sin confirmar)</h3>
           <select class="custom-select"  id="variable1" name="variable1">
             {%for art in variable1 %}
             <option value="{{art}}">{{art}}</option>
@@ -48,7 +48,7 @@
           </select>
         </div>
         <div class="col">
-          <h3>Eje Y (Vacunacion)</h3>
+          <h3>Eje Y (Test Realizados confirmados)</h3>
           <select class="custom-select"  id="variable2" name="variable2">
             {%for art in variable1 %}
             <option value="{{art}}">{{art}}</option>

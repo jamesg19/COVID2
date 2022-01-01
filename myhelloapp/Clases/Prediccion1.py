@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 import numpy as np
 import pandas as pd
+import datetime as dt
 
 
 class Prediccion1:
@@ -117,9 +118,9 @@ class Prediccion1:
 
         # prediction
         x_new_min = int(min)*1.0
-        x_new_max = int(max)*1.0
+        x_new_max = 1000000*1.0
 
-        x_new = np.linspace(x_new_min, x_new_max, 50)
+        x_new = np.linspace(x_new_min, x_new_max, 1000000)
         x_new = x_new[:,np.newaxis]
 
         x_new_transform = polynomial_features.fit_transform(x_new)

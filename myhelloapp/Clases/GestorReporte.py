@@ -106,5 +106,5 @@ class GestorReporte:
         elif(tipo=="24"):
             return ""
         elif(tipo=="25"):
-            return ""
+            return "Predicción de casos confirmados por día"
         

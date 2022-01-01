@@ -9,6 +9,7 @@ from myhelloapp.Clases.GestorReporte import GestorReporte
 from myhelloapp.Clases.LeerColumnas import LeerColumnas
 from myhelloapp.Clases.Prediccion1 import Prediccion1
 from myhelloapp.Clases.Prediccion2 import Prediccion2
+from myhelloapp.Clases.Prediccion25 import Prediccion25
 from myhelloapp.Clases.Prediccion4 import Prediccion4
 # Create your views here.
 
@@ -63,64 +64,68 @@ def procesarArchivo(request):
 
 # Tendencia de la infección por Covid-19 en un País. 
 def Reporte1(request):
-    
-    variable1 = request.POST['variable1']
-    variable2 = request.POST['variable2']
-    filtrar=request.POST['filtrar']
-    columnaFiltrar=""
-    valorFiltrar=""
-    min = request.POST['min']
-    max = request.POST['max']
+    try:
+        variable1 = request.POST['variable1']
+        variable2 = request.POST['variable2']
+        filtrar=request.POST['filtrar']
+        columnaFiltrar=""
+        valorFiltrar=""
+        min = request.POST['min']
+        max = request.POST['max']
 
-    print(min)
-    print(max)
-    
-    
-    if(filtrar=="si"):
-        columnaFiltrar=request.POST['columnaFiltrar']
-        valorFiltrar=request.POST['valorFiltrar']
-    
-    reporte1=Prediccion1();
-    reporte1.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
-    
-    titulo="Tendencia de infeccion en un pais"
+        print(min)
+        print(max)
+        
+        
+        if(filtrar=="si"):
+            columnaFiltrar=request.POST['columnaFiltrar']
+            valorFiltrar=request.POST['valorFiltrar']
+        
+        reporte1=Prediccion1();
+        reporte1.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
+        
+        titulo="Tendencia de infeccion en un pais"
 
 
-    context={
-        "titulo":titulo,
-        #APP CONFIG
-    }
-    
-    return render(request,'reporte.html',context)
+        context={
+            "titulo":titulo,
+            #APP CONFIG
+        }
+        
+        return render(request,'reporte.html',context)
+    except:
+        return render(request,'principal.html',context)
 
 
 # PREDICCION DE INFECTADOS DE UN PAIS
 def Reporte2(request):
-    
-    variable1 = request.POST['variable1']
-    variable2 = request.POST['variable2']
-    min = request.POST['min']
-    max = request.POST['max']
-    filtrar=request.POST['filtrar']
-    columnaFiltrar=""
-    valorFiltrar=""
-    
-    if(filtrar=="si"):
-        columnaFiltrar=request.POST['columnaFiltrar']
-        valorFiltrar=request.POST['valorFiltrar']
-    
-    
-    reporte2=Prediccion2();
-    reporte2.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
-    
-    titulo="PREDICCION DE INFECTADOS DE UN PAIS"
+    try:
+        variable1 = request.POST['variable1']
+        variable2 = request.POST['variable2']
+        min = request.POST['min']
+        max = request.POST['max']
+        filtrar=request.POST['filtrar']
+        columnaFiltrar=""
+        valorFiltrar=""
+        
+        if(filtrar=="si"):
+            columnaFiltrar=request.POST['columnaFiltrar']
+            valorFiltrar=request.POST['valorFiltrar']
+        
+        
+        reporte2=Prediccion2();
+        reporte2.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
+        
+        titulo="PREDICCION DE INFECTADOS DE UN PAIS"
 
-    context={
-        "titulo":titulo,
-        #APP CONFIG
-    }
-    
-    return render(request,'reporte.html',context)
+        context={
+            "titulo":titulo,
+            #APP CONFIG
+        }
+        
+        return render(request,'reporte.html',context)
+    except:
+        return render(request,'principal.html',context)
 
 def Reporte3(request):
     pass
@@ -129,84 +134,93 @@ def Reporte3(request):
 
 #Predicción de mortalidad por COVID en un Departamento.
 def Reporte4(request):
-    variable1 = request.POST['variable1']
-    variable2 = request.POST['variable2']
-    min = request.POST['min']
-    max = request.POST['max']
-    filtrar=request.POST['filtrar']
-    columnaFiltrar=""
-    valorFiltrar=""
-    
-    if(filtrar=="si"):
-        columnaFiltrar=request.POST['columnaFiltrar']
-        valorFiltrar=request.POST['valorFiltrar']
-    
-    
-    reporte4=Prediccion4();
-    reporte4.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Departamento")
-    
-    titulo="Predicción de mortalidad por COVID en un Departamento"
+    try:
+        variable1 = request.POST['variable1']
+        variable2 = request.POST['variable2']
+        min = request.POST['min']
+        max = request.POST['max']
+        filtrar=request.POST['filtrar']
+        columnaFiltrar=""
+        valorFiltrar=""
+        
+        if(filtrar=="si"):
+            columnaFiltrar=request.POST['columnaFiltrar']
+            valorFiltrar=request.POST['valorFiltrar']
+        
+        
+        reporte4=Prediccion4();
+        reporte4.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Departamento")
+        
+        titulo="Predicción de mortalidad por COVID en un Departamento"
 
-    context={
-        "titulo":titulo,
-        #APP CONFIG
-    }
-    
-    return render(request,'reporte.html',context)
+        context={
+            "titulo":titulo,
+            #APP CONFIG
+        }
+        
+        return render(request,'reporte.html',context)
+    except:
+        return render(request,'principal.html',context)
 
 def Reporte5(request):
-    variable1 = request.POST['variable1']
-    variable2 = request.POST['variable2']
-    min = request.POST['min']
-    max = request.POST['max']
-    filtrar=request.POST['filtrar']
-    columnaFiltrar=""
-    valorFiltrar=""
-    
-    if(filtrar=="si"):
-        columnaFiltrar=request.POST['columnaFiltrar']
-        valorFiltrar=request.POST['valorFiltrar']
-    
-    
-    reporte4=Prediccion4();
-    reporte4.analizar5(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
-    
-    titulo="Predicción de mortalidad por COVID en un País"
-    descripcion=""
-    
-    context={
-        "titulo":titulo,
-        "descripcion":descripcion,
-    }
-    
-    return render(request,'reporte.html',context)
+    try:
+        variable1 = request.POST['variable1']
+        variable2 = request.POST['variable2']
+        min = request.POST['min']
+        max = request.POST['max']
+        filtrar=request.POST['filtrar']
+        columnaFiltrar=""
+        valorFiltrar=""
+        
+        if(filtrar=="si"):
+            columnaFiltrar=request.POST['columnaFiltrar']
+            valorFiltrar=request.POST['valorFiltrar']
+        
+        
+        reporte4=Prediccion4();
+        reporte4.analizar5(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
+        
+        titulo="Predicción de mortalidad por COVID en un País"
+        descripcion=""
+        
+        context={
+            "titulo":titulo,
+            "descripcion":descripcion,
+        }
+        
+        return render(request,'reporte.html',context)
+    except:
+        return render(request,'principal.html',context)
     
     
 def Reporte6(request):
-    variable1 = request.POST['variable1']
-    variable2 = request.POST['variable2']
+    try:
+        variable1 = request.POST['variable1']
+        variable2 = request.POST['variable2']
 
-    filtrar=request.POST['filtrar']
-    columnaFiltrar=""
-    valorFiltrar=""
-    
-    if(filtrar=="si"):
-        columnaFiltrar=request.POST['columnaFiltrar']
-        valorFiltrar=request.POST['valorFiltrar']
-    
-    
-    reporte4=Prediccion4();
-    reporte4.analizar6 (variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
-    
-    titulo="Análisis del número de muertes por coronavirus en un País."
-    descripcion=""
-    
-    context={
-        "titulo":titulo,
-        "descripcion":descripcion,
-    }
-    
-    return render(request,'reporte.html',context)
+        filtrar=request.POST['filtrar']
+        columnaFiltrar=""
+        valorFiltrar=""
+        
+        if(filtrar=="si"):
+            columnaFiltrar=request.POST['columnaFiltrar']
+            valorFiltrar=request.POST['valorFiltrar']
+        
+        
+        reporte4=Prediccion4();
+        reporte4.analizar6 (variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
+        
+        titulo="Análisis del número de muertes por coronavirus en un País."
+        descripcion=""
+        
+        context={
+            "titulo":titulo,
+            "descripcion":descripcion,
+        }
+        
+        return render(request,'reporte.html',context)
+    except:
+        return render(request,'principal.html',context)
 
 
 
@@ -215,63 +229,67 @@ def Reporte7(request):
 
 
 def Reporte8(request):
-    variable1 = request.POST['variable1']
-    variable2 = request.POST['variable2']
+    try:
+        variable1 = request.POST['variable1']
+        variable2 = request.POST['variable2']
 
-    filtrar=request.POST['filtrar']
-    columnaFiltrar=""
-    valorFiltrar=""
-    
-    if(filtrar=="si"):
-        columnaFiltrar=request.POST['columnaFiltrar']
-        valorFiltrar=request.POST['valorFiltrar']
-    
-    
-    reporte4=Prediccion4();
-    reporte4.analizar8("",variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
-    
-    titulo="Predicción de casos de un país para un año."
-    descripcion=""
-    
-    context={
-        "titulo":titulo,
-        "descripcion":descripcion,
-    }
-    
-    return render(request,'reporte.html',context)
+        filtrar=request.POST['filtrar']
+        columnaFiltrar=""
+        valorFiltrar=""
+        
+        if(filtrar=="si"):
+            columnaFiltrar=request.POST['columnaFiltrar']
+            valorFiltrar=request.POST['valorFiltrar']
+        
+        reporte4=Prediccion4();
+        reporte4.analizar8("",variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
+        
+        titulo="Predicción de casos de un país para un año."
+        descripcion=""
+        
+        context={
+            "titulo":titulo,
+            "descripcion":descripcion,
+        }
+        
+        return render(request,'reporte.html',context)
+    except:
+        return render(request,'principal.html',context)
 
 #Tendencia de la vacunación de en un País. 
 
 def Reporte9(request):
-    
-    variable1 = request.POST['variable1']
-    variable2 = request.POST['variable2']
-    filtrar=request.POST['filtrar']
-    columnaFiltrar=""
-    valorFiltrar=""
-    min = request.POST['min']
-    max = request.POST['max']
+    try:
+        variable1 = request.POST['variable1']
+        variable2 = request.POST['variable2']
+        filtrar=request.POST['filtrar']
+        columnaFiltrar=""
+        valorFiltrar=""
+        min = request.POST['min']
+        max = request.POST['max']
 
-    print(min)
-    print(max)
-    
-    
-    if(filtrar=="si"):
-        columnaFiltrar=request.POST['columnaFiltrar']
-        valorFiltrar=request.POST['valorFiltrar']
-    
-    reporte1=Prediccion1();
-    reporte1.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
-    
-    titulo="Tendencia de la vacunación de en un País."
+        print(min)
+        print(max)
+        
+        
+        if(filtrar=="si"):
+            columnaFiltrar=request.POST['columnaFiltrar']
+            valorFiltrar=request.POST['valorFiltrar']
+        
+        reporte1=Prediccion1();
+        reporte1.analizar9(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
+        
+        titulo="Tendencia de la vacunación de en un País."
 
 
-    context={
-        "titulo":titulo,
-        #APP CONFIG
-    }
-    
-    return render(request,'reporte.html',context)
+        context={
+            "titulo":titulo,
+            #APP CONFIG
+        }
+        
+        return render(request,'reporte.html',context)
+    except:
+        return render(request,'principal.html',context)
 
 
 
@@ -290,3 +308,37 @@ def Reporte15(request):
     pass
 def Reporte16(request):
     pass
+
+def Reporte25(request):
+    try:
+        variable1 = request.POST['variable1']
+        variable2 = request.POST['variable2']
+        filtrar=request.POST['filtrar']
+        columnaFiltrar=""
+        valorFiltrar=""
+        min = request.POST['min']
+        max = request.POST['max']
+
+        print(min)
+        print(max)
+        
+        
+        if(filtrar=="si"):
+            columnaFiltrar=request.POST['columnaFiltrar']
+            valorFiltrar=request.POST['valorFiltrar']
+        
+        reporte25=Prediccion25();
+        reporte25.analizar25(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
+        
+        titulo="Tendencia de la vacunación de en un País."
+
+
+        context={
+            "titulo":titulo,
+            #APP CONFIG
+        }
+        
+        return render(request,'reporte.html',context)
+    except:
+        return render(request,'principal.html')
+
