@@ -22,15 +22,15 @@ class Prediccion2:
             
             dataTemp=data
             print(dataTemp)
-            X = np.asarray(data[dias].array)[:,np.newaxis]
-            Y = np.asarray(data[infectados].array)[:,np.newaxis]
+            X = np.asarray(dataTemp[dias].array)[:,np.newaxis]
+            Y = np.asarray(dataTemp[infectados].array)[:,np.newaxis]
             
 
         # dataTemp[dias]= pd.to_datetime(dataTemp[dias])
         # dataTemp[dias]=dataTemp[dias].map(dt.datetime.toordinal)
         
         X = np.asarray(dataTemp[dias].array)[:,np.newaxis]
-        y = np.asarray(dataTemp[infectados].array)[:,np.newaxis]
+        Y = np.asarray(dataTemp[infectados].array)[:,np.newaxis]
 
 
         plt.scatter(X,Y)  

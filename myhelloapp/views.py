@@ -90,6 +90,7 @@ def Reporte1(request):
             titulo="Tendencia de infeccion en un pais \n"
             desc="La tendencia de las infecciones en un país se lleva a cabo\na través de un máximo de: "+max+"(unidades de tiempo) lo cual en base \na los datos obtenidos se hace una estimación de la tendencia \npara los proximos "+max+" (unidades tiempo)."
             desc+="\nAdemas se utiliza la columna "+variable1+" en el eje X \ny  la columna \nen el eje Y "+variable2
+            
             newcode=Codigo64()
             context={
                 "titulo":titulo,
@@ -127,13 +128,16 @@ def Reporte2(request):
             reporte2.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
             
             titulo="PREDICCION DE INFECTADOS DE UN PAIS"
-            desc=""
+            desc="la prediccion de infectados en un país se lleva a cabo\na través de un máximo de: "+max+"(unidades de tiempo) lo cual en base \na los datos obtenidos se hace una estimación de la tendencia \npara los proximos "+max+" (unidades tiempo)."
+            desc+="\nAdemas se utiliza la columna "+variable1+" en el eje X \ny  la columna \nen el eje Y "+variable2+"."
+            desc+="\n la linea amarilla representa prediccion y \n la linea azul(es) los casos reales."
             newcode=Codigo64()
             context={
                 "titulo":titulo,
                 "codigo":newcode.obtenerCodigo(),
+                "desc":desc,
             }
-            
+
             return render(request,'reporte.html',context)
         else:
             return render(request,'principal.html')
