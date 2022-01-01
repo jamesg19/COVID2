@@ -240,13 +240,42 @@ def Reporte8(request):
     
     return render(request,'reporte.html',context)
 
-
-
-
-
+#Tendencia de la vacunación de en un País. 
 
 def Reporte9(request):
-    pass
+    
+    variable1 = request.POST['variable1']
+    variable2 = request.POST['variable2']
+    filtrar=request.POST['filtrar']
+    columnaFiltrar=""
+    valorFiltrar=""
+    min = request.POST['min']
+    max = request.POST['max']
+
+    print(min)
+    print(max)
+    
+    
+    if(filtrar=="si"):
+        columnaFiltrar=request.POST['columnaFiltrar']
+        valorFiltrar=request.POST['valorFiltrar']
+    
+    reporte1=Prediccion1();
+    reporte1.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
+    
+    titulo="Tendencia de la vacunación de en un País."
+
+
+    context={
+        "titulo":titulo,
+        #APP CONFIG
+    }
+    
+    return render(request,'reporte.html',context)
+
+
+
+
 def Reporte10(request):
     pass
 def Reporte11(request):
