@@ -1,4 +1,4 @@
-from myhelloapp.Clases.Reporte import Reporte
+#from myhelloapp.Clases.Reporte import Reporte
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error, r2_score
@@ -51,6 +51,6 @@ class Prediccion25:
         plt.ylabel('Test confirmados')
         plt.savefig('./helloworld/static/img.png')
         plt.cla()
-        pdf=Reporte()
+
 
         
