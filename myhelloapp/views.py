@@ -345,12 +345,7 @@ def Reporte12(request):
     pass
 def Reporte13(request):
     pass
-def Reporte14(request):
-    pass
-def Reporte15(request):
-    pass
-def Reporte16(request):
-    pass
+
 
 #Predicción de casos confirmados por día
 def Reporte25(request):
