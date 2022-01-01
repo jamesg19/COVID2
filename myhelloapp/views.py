@@ -4,7 +4,7 @@ from django.http import JsonResponse
 import pathlib
 import os
 import csv
-import base64 as base64Imagen
+#import base64 as base64Imagen
 from os import remove
 from myhelloapp.Clases.Codigo64 import Codigo64
 from myhelloapp.Clases.GestorReporte import GestorReporte
