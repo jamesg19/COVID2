@@ -1,6 +1,7 @@
 from django.urls import path
 #from sklearn.linear_model import LinearRegression
-from .views import  procesarArchivo, Reporte1, Reporte2, Reporte3, Reporte4, Reporte5, Reporte6, Reporte7, Reporte8, Reporte9, Reporte10, Reporte11,Reporte12, Reporte13, Reporte25
+from .views import  procesarArchivo, Reporte1, Reporte2, Reporte3, Reporte4, Reporte5, Reporte6, Reporte7, Reporte8, Reporte9, Reporte10, Reporte11
+from .views import Reporte12, Reporte13, Reporte25
 
 
 from . import views

@@ -108,5 +108,3 @@ class GestorReporte:
         elif(tipo=="25"):
             return "Predicción de casos confirmados por día"
         
-    
-        

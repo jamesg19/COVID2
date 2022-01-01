@@ -1,4 +1,3 @@
-#from myhelloapp.Clases.Reporte import Reporte
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error, r2_score
@@ -16,7 +15,7 @@ class Prediccion25:
     def analizar25(self,resultados,positivos,filtrar,columnaFiltrar,valorFiltrar,min,max,region):
         
         dataTemp = pd.read_csv('archivo.csv')
-
+        print("JAAAAAAAAAMMMMMMMMMMMMMEEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSS1111")
         if(filtrar=="si"):
             
             #dataTemp = pd.read_csv('archivo.csv')
@@ -31,26 +30,28 @@ class Prediccion25:
         
         X = np.asarray(dataTemp[resultados].array)[:,np.newaxis]
         y = np.asarray(dataTemp[positivos].array)
-
-
-        
-        xTemp, X_test, y_t, y_test = train_test_split(X, y, test_size = 0.3)
+        print(X)
+        print("JAAAAAAAAAMMMMMMMMMMMMMEEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSS2")
+        print()
+        print(y)
+        X_t, X_test, y_t, y_test = train_test_split(X, y, test_size = 0.2)
 
 
         reg = LinearRegression()
-        reg.fit(xTemp, y_t)
+        reg.fit(X_t, y_t)
 
         y_pred = reg.predict(X_test)
 
-        df = pd.DataFrame({'Valores reales':y_test, 'Prediccion valores':y_pred})
-        plt.scatter(X_test, y_test, color = 'red')
+        df = pd.DataFrame({'Real Values':y_test, 'Predicted Values':y_pred})
+
+
+        plt.scatter(X_test, y_test, color = 'green')
         plt.scatter(X_test, y_pred, color = 'blue')
-        plt.plot(xTemp, reg.predict(xTemp), color = 'black')
-        plt.title('Test confirmados / Test realizados')
-        plt.xlabel('Test realizados')
-        plt.ylabel('Test confirmados')
+        plt.plot(X_t, reg.predict(X_t), color = 'orange')
+        plt.title('Casos confirmados / Test Realizados')
+        plt.xlabel('Test Realizados')
+        plt.ylabel('Casos Positivos')
         plt.savefig('./helloworld/static/img.png')
         plt.cla()
-
 
         

@@ -12,7 +12,6 @@
     <script type="text/javascript" src='https://unpkg.com/xlsx/dist/shim.min.js'></script>
     <script lang="javascript" src='https://unpkg.com/xlsx/dist/xlsx.full.min.js' ></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
 </head>
 <body>
 
@@ -29,42 +28,12 @@
     </nav>
     <br>
     <br>
-    <div id="ht" name="ht">
-    <h1 align="center" >{{titulo}}</h1>
-    <h4>{{desc}}<h4>
-    </div>
+    <h2 align="center" >{{titulo}}</h2>
     <br>
-    <textarea id="area" name="area" style="display:none;"  nowrap="nowrap" wrap="off" value="{{codigo}}" >{{codigo}}</textarea>
-    <textarea id="desc" style="display:none;"  name="desc" nowrap="nowrap" wrap="off" value="{{desc}}" >{{desc}}</textarea>
-    <textarea id="titulo" style="display:none;"  name="titulo" nowrap="nowrap" wrap="off" value="{{titulo}}" >{{titulo}}</textarea>
-    <div  align="right">
-    <button type="button" onclick="download()" class="btn btn-danger">Descargar Reporte</button>
-    </div>
+    <br>
     <div  align="center">
-      <img id="grafica" name="grafica"src="data:image/png;base64,{{codigo}}" alt="My image">
+      <img src="{% static '/img.png' %}" alt="My image">
     </div>
-    <script>
-        function download(){
-            var doc= new jsPDF();
-            const imagen = document.getElementById('area');
-            const desc = document.getElementById('desc');
-            const titulo = document.getElementById('titulo');
-            //console.log(imagen.value);
-
-            var dataImagen="data:image/png;base64,"+imagen.value;
-            
-            doc.text(titulo.value+"\n" ,13,13);
-            doc.text("\n\n"+desc.value,8,8)
-            //doc.fromHTML($('#ht').get(0))
-            doc.addImage(dataImagen,40,100,160,140);
-            doc.save("Reporte.pdf");
-
-
-
-        }
-
-    </script>
-    
 
 
 
