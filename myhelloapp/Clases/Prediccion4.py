@@ -137,40 +137,40 @@ class Prediccion4:
 
         dataTemp = pd.read_csv('archivo.csv')
 
-        if(filtrar=="si"):
+        # if(filtrar=="si"):
 
-            #dataTemp = pd.read_csv('archivo.csv')
-            newData = dataTemp[columnaFiltrar] == valorFiltrar
-            data = dataTemp[newData]
+        #     #dataTemp = pd.read_csv('archivo.csv')
+        #     newData = dataTemp[columnaFiltrar] == valorFiltrar
+        #     data = dataTemp[newData]
 
-            dataTemp=data
-            print(dataTemp)
+        #     dataTemp=data
+        #     print(dataTemp)
 
-        yTemp = np.asarray(dataTemp[infectados])
+        # yTemp = np.asarray(dataTemp[infectados])
         
-        cases=[]
-        for i in yTemp:
-            cases.append(i)
-        print(cases)
+        # cases=[]
+        # for i in yTemp:
+        #     cases.append(i)
+        # print(cases)
         
-        X = np.array(range(len(cases)))
-        sequencia = np.linspace(X.min(), X.max(), len(cases)).reshape(-1, 1)
+        # X = np.array(range(len(cases)))
+        # sequencia = np.linspace(X.min(), X.max(), len(cases)).reshape(-1, 1)
 
-        degree = 10
+        # degree = 10
 
-        polyreg=make_pipeline(PolynomialFeatures(degree), LinearRegression())
-        polyreg.fit(X[:, np.newaxis], cases)
-        #grafica
-        plt.figure()
-        #formando la grafica
-        plt.xlabel("Eje X Dias del Año ")
-        plt.ylabel("Eje Y Casos"+infectados)
-        plt.scatter(X, cases) 
-        #linea de prediccion
-        plt.plot(sequencia, polyreg.predict(sequencia), color = "orange") 
-        plt.title("Predicción de casos de un país "+valorFiltrar+" para un año.\n Regresion Lineal")
-        plt.savefig('./helloworld/static/img.png')
-        plt.cla()
+        # polyreg=make_pipeline(PolynomialFeatures(degree), LinearRegression())
+        # polyreg.fit(X[:, np.newaxis], cases)
+        # #grafica
+        # plt.figure()
+        # #formando la grafica
+        # plt.xlabel("Eje X Dias del Año ")
+        # plt.ylabel("Eje Y Casos"+infectados)
+        # plt.scatter(X, cases) 
+        # #linea de prediccion
+        # plt.plot(sequencia, polyreg.predict(sequencia), color = "orange") 
+        # plt.title("Predicción de casos de un país "+valorFiltrar+" para un año.\n Regresion Lineal")
+        # plt.savefig('./helloworld/static/img.png')
+        # plt.cla()
         
         
 
