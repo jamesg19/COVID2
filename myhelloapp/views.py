@@ -88,8 +88,8 @@ def Reporte1(request):
             reporte1.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
             
             titulo="Tendencia de infeccion en un pais \n"
-            desc="La tendencia de las infecciones en un país se lleva a cabo\na través de un máximo de: "+max+"(unidades de tiempo) lo cual en base \na los datos obtenidos se hace una estimación de la tendencia \npara los proximos "+max+" (unidades tiempo)."
-            desc+="\nAdemas se utiliza la columna "+variable1+" en el eje X \ny  la columna \nen el eje Y "+variable2
+            desc="La tendencia de las infecciones en un país se lleva \na cabo a través de un máximo de: "+max+"(unidades de tiempo)\nlo cual en base a los datos obtenidos se hace \nuna estimación de la tendencia para los proximos \n"+max+" (unidades tiempo)."
+            desc+="\nAdemas se utiliza la columna "+variable1+" en el eje X \ny  la columna "+variable2+" en el eje Y "
             
             newcode=Codigo64()
             context={
@@ -128,9 +128,13 @@ def Reporte2(request):
             reporte2.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
             
             titulo="PREDICCION DE INFECTADOS DE UN PAIS"
-            desc="la prediccion de infectados en un país se lleva a cabo\na través de un máximo de: "+max+"(unidades de tiempo) lo cual en base \na los datos obtenidos se hace una estimación de la tendencia \npara los proximos "+max+" (unidades tiempo)."
-            desc+="\nAdemas se utiliza la columna "+variable1+" en el eje X \ny  la columna \nen el eje Y "+variable2+"."
-            desc+="\n la linea amarilla representa prediccion y \n la linea azul(es) los casos reales."
+            desc="la prediccion de infectados en un país se lleva \n"
+            desc+="a cabo a través de un máximo de: "+max+"(unidades tiempo)\n"
+            desc+="lo cual en base a los datos obtenidos se hace una \n"
+            desc+="estimación de la tendencia para los proximos "+max+"\n"
+            desc+="(unidades tiempo).\n"
+            desc+="Ademas se utiliza la columna "+variable1+" en el eje X \ny  la columna "+variable2+" en el eje Y .\n"
+            desc+="\nLa linea amarilla representa prediccion y \nla linea azul(es) los casos reales."
             newcode=Codigo64()
             context={
                 "titulo":titulo,
@@ -170,12 +174,18 @@ def Reporte4(request):
             reporte4=Prediccion4();
             reporte4.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Departamento")
             
-            titulo="Predicción de mortalidad por COVID en un Departamento"
-
+            titulo="\n\n\n\n\nPredicción de mortalidad por COVID en un Departamento\n"
+            desc="Se pueden predecir como maximo 30 dias posteriores al\n"
+            desc+="ultimo dato,y hacer una prediccion muy lejana puede dar\n" 
+            desc+="una prediccion con decremento por lo tanto la prediccion\n"
+            desc+="de esta grafica tiene como maximo predecir  "+max+" dias.\n"
+            desc+="La linea naranja representa la prediccion.\n"
+            desc+="La linea azul representa el numero de muertes reales.\n"
             newcode=Codigo64()
             context={
                 "titulo":titulo,
                 "codigo":newcode.obtenerCodigo(),
+                "desc":desc
             }
             
             return render(request,'reporte.html',context)
@@ -369,14 +379,19 @@ def Reporte25(request):
             
             reporte25=Prediccion25();
             reporte25.analizar25(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
-            
-            titulo="Predicción de casos confirmados por día"
+            #Como se puede apreciar en la imagen, la predicción toma una forma lineal (puntos azules) y los datos reales (puntos rojos), en realidad tienen muy poca correlación con la predicción.
 
-
+            titulo="Predicción de casos confirmados por día\n"
+            desc="Se hace una predicción con regresión lineal de Sklearn,\n"
+            desc+="para determinar el número de casos confirmados que\n"
+            desc+="deberían existir para cada fecha.\n"
+            desc+="Como se puede apreciar en la imagen, la predicción \n(puntos azules) y los datos reales (puntos rojos)\n"
+            desc+="Se deja el siguiente grafico para su interpretacion: "
             newcode=Codigo64()
             context={
                 "titulo":titulo,
                 "codigo":newcode.obtenerCodigo(),
+                "desc":desc,
             }
             
             return render(request,'reporte.html',context)

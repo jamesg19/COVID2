@@ -4,7 +4,7 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.pyplot as plt
 
-#import numpy as np
+import numpy as np
 import pandas as pd
 import datetime as dt
 
