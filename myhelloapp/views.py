@@ -11,6 +11,7 @@ from myhelloapp.Clases.GestorReporte import GestorReporte
 from myhelloapp.Clases.LeerColumnas import LeerColumnas
 from myhelloapp.Clases.Prediccion1 import Prediccion1
 from myhelloapp.Clases.Prediccion2 import Prediccion2
+from myhelloapp.Clases.Prediccion22 import Prediccion22
 from myhelloapp.Clases.Prediccion25 import Prediccion25
 from myhelloapp.Clases.Prediccion4 import Prediccion4
 # Create your views here.
@@ -214,13 +215,23 @@ def Reporte5(request):
             reporte4=Prediccion4();
             reporte4.analizar5(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
             
-            titulo="Predicción de mortalidad por COVID en un País"
-            descripcion=""
-            
+            titulo="Predicción de mortalidad por COVID en un País\n"
+            # de muertes confirmadas y la linea roja representa la prediccion de muertes en dicho pais.
+
+            desc="Se realiza la prediccion de mortalidad de un pais\n"
+            desc+="al dia "+max+" donde la linea azul representa los casos\n"
+            desc+="reales de muertes confirmadas y la linea roja representa\n"
+            desc+="la prediccion de muertes en dicho pais.\n"
+            desc+="El eje X representa el tiempo(Unidades de tiempo)\n"
+            desc+="de la columna "+variable1+".\n"
+            desc+="El eje Y representa el numero de decesos de personas\n"
+            desc+="de la columna "+variable2+".\n"
+                        
             newcode=Codigo64()
             context={
                 "titulo":titulo,
                 "codigo":newcode.obtenerCodigo(),
+                "desc":desc,
             }
             
             return render(request,'reporte.html',context)
@@ -248,15 +259,23 @@ def Reporte6(request):
             
             
             reporte4=Prediccion4();
-            reporte4.analizar6 (variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
+            reporte4.analizar6(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
             
-            titulo="Análisis del número de muertes por coronavirus en un País."
-            descripcion=""
-            
+            titulo="Análisis del número de muertes por coronavirus en un País.\n"
+            desc="\nAnálisis del número de muertes por coronavirus en un pais\n"
+            desc+="mediante una regresión lineal, se dice que cuando las\n"
+            desc+="muertes reportadas estan muy cerca al comportamiento\n"
+            desc+="de la prediccion es porque hay una buena toma de datos,\n"
+            desc+="pero si estan dispersas indica que hay factores\n"
+            desc+="externos que aumentan los datos.\n"
+            desc+="El Eje X: "+variable1+" representa el tiempo,\n"
+            desc+="El Eje Y:"+variable2+" representa el numero de muertes.\n"
+            #muertes reportadas están lejos de lo que debería ser el comportamiento real de dicho evento. Donde los puntos azules representan las muertes reales, y la linea roja representa la prediccion de muertes.
             newcode=Codigo64()
             context={
                 "titulo":titulo,
                 "codigo":newcode.obtenerCodigo(),
+                "desc":desc,
             }
             
             return render(request,'reporte.html',context)
@@ -269,7 +288,43 @@ def Reporte6(request):
 
 
 def Reporte7(request):
-    pass
+    #pass
+    #try:
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
+            min = request.POST['min']
+            max = request.POST['max']
+
+            print(min)
+            print(max)
+            
+            
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
+            
+            reporte1=Prediccion1();
+            reporte1.analizar7(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
+            
+            titulo="Tendencia del número de infectados por día de un País.."
+
+
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "codigo":newcode.obtenerCodigo(),
+            }
+            
+            return render(request,'reporte.html',context)
+        else:
+            return render(request,'principal.html')
+            
+    # except:
+    #     return render(request,'principal.html')
 
 
 def Reporte8(request):
@@ -310,7 +365,7 @@ def Reporte8(request):
 
 def Reporte9(request):
     #pass
-    try:
+    #try:
         if request.method == "POST":
             variable1 = request.POST['variable1']
             variable2 = request.POST['variable2']
@@ -344,8 +399,8 @@ def Reporte9(request):
         else:
             return render(request,'principal.html')
             
-    except:
-        return render(request,'principal.html')
+    # except:
+    #     return render(request,'principal.html')
 
 
 
@@ -359,7 +414,44 @@ def Reporte12(request):
 def Reporte13(request):
     pass
 
+def Reporte22(request):
+    #try:
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
+            variable3 = request.POST['variable3']
+            pais=request.POST['pais']
+            
+            
 
+            reporte22=Prediccion22();
+            rate=reporte22.analizar22(variable1,variable2,variable3)
+            NoM=reporte22.muertes
+            NoCon=reporte22.confirmados
+            #Como se puede apreciar en la imagen, la predicción toma una forma lineal (puntos azules) y los datos reales (puntos rojos), en realidad tienen muy poca correlación con la predicción.
+            #sea positiva o negativa. El número total de casos fallecidos.
+            titulo="Tasa de mortalidad por coronavirus (COVID-19) en un país\n"
+            desc="Para calcular la mortalidad necesitamos:\n"
+            desc+="El número de casos acumulados registrados del pais,\n"
+            desc+="sea positiva o negativa. El número total de casos \n"
+            desc+="fallecidos.\nY se obtuvo el numero de casos confirmados: "+NoCon+"\n"
+            desc+="Y el numero de muertes confirmados: "+NoM+"\n"
+            desc+="Utilizando la fórmula de Tasa de mortalidad por infección \n"
+            desc+="Muertes / Casos ="+NoM+" / "+NoCon+" = "+rate+"%  (Tasa de Mortalidad)\n"+pais
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "codigo":"m",
+                "desc":desc,
+            }
+            
+            return render(request,'reporte22.html',context)
+        else:
+            
+            return render(request,'principal.html')
+            
+    # except:
+    #     return render(request,'principal.html')
 #Predicción de casos confirmados por día
 def Reporte25(request):
     try:

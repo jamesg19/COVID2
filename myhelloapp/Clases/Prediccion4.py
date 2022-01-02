@@ -62,7 +62,7 @@ class Prediccion4:
             data = dataTemp[newData]
             
             dataTemp=data
-            print(dataTemp)
+            #print(dataTemp)
         
         yTemp = np.asarray(dataTemp[infectados])
         cases=[]
@@ -88,7 +88,7 @@ class Prediccion4:
         count_cases = count_cases[:, np.newaxis]
         days = days[:, np.newaxis]
 
-        # Prediccion para dia X 350 dia
+        # Prediccion para dia
         sequence = np.linspace(days.min(), int(max), int(max)+50).reshape(-1, 1)
         #Grado7 para evaluar
         model = make_pipeline(PolynomialFeatures(7), LinearRegression())

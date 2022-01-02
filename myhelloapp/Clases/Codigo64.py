@@ -11,3 +11,5 @@ class Codigo64:
 
         newcode=str(image_64_encode)[2:-1]
         return newcode.replace('\\n', '')
+    
+    
