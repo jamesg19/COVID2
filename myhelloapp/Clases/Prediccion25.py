@@ -7,8 +7,8 @@
 # from sklearn.model_selection import train_test_split
 # import numpy as np
 import pandas as pd
-import datetime as dt
-import random
+#import datetime as dt
+
 class Prediccion25:
     def __init__(self):
         pass

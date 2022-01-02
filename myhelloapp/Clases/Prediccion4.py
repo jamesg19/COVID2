@@ -1,6 +1,6 @@
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
-from sklearn.metrics import mean_squared_error, r2_score
+#from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.pipeline import make_pipeline
 import matplotlib.pyplot as plt
 import numpy as np
@@ -55,83 +55,83 @@ class Prediccion4:
     def analizar5(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max,region):
         dataTemp = pd.read_csv('archivo.csv')
         
-        if(filtrar=="si"):
+        # if(filtrar=="si"):
             
-            #dataTemp = pd.read_csv('archivo.csv')
-            newData = dataTemp[columnaFiltrar] == valorFiltrar
-            data = dataTemp[newData]
+        #     #dataTemp = pd.read_csv('archivo.csv')
+        #     newData = dataTemp[columnaFiltrar] == valorFiltrar
+        #     data = dataTemp[newData]
             
-            dataTemp=data
-            print(dataTemp)
+        #     dataTemp=data
+        #     print(dataTemp)
         
-        yTemp = np.asarray(dataTemp[infectados])
-        cases=[]
-        for i in yTemp:
-            cases.append(i)
-        print(cases)
+        # yTemp = np.asarray(dataTemp[infectados])
+        # cases=[]
+        # for i in yTemp:
+        #     cases.append(i)
+        # print(cases)
         
-        count_cases = []
-        val = 0
-        for i in cases:
-            val = val+i
-            count_cases.append(val)
+        # count_cases = []
+        # val = 0
+        # for i in cases:
+        #     val = val+i
+        #     count_cases.append(val)
 
-        print(len(count_cases))
+        # print(len(count_cases))
 
-        days = []
-        for i in range(len(count_cases)):
-            days.append(i + 1)
+        # days = []
+        # for i in range(len(count_cases)):
+        #     days.append(i + 1)
 
-        count_cases = np.asarray(count_cases)
-        days = np.asarray(days)
+        # count_cases = np.asarray(count_cases)
+        # days = np.asarray(days)
 
-        count_cases = count_cases[:, np.newaxis]
-        days = days[:, np.newaxis]
+        # count_cases = count_cases[:, np.newaxis]
+        # days = days[:, np.newaxis]
 
-        # Prediccion para dia X 350 dia
-        sequence = np.linspace(days.min(), int(max), int(max)+50).reshape(-1, 1)
-        #Grado7 para evaluar
-        model = make_pipeline(PolynomialFeatures(7), LinearRegression())
-        model.fit(days, count_cases)
-        plt.figure()
-        plt.scatter(days, count_cases)
+        # # Prediccion para dia X 350 dia
+        # sequence = np.linspace(days.min(), int(max), int(max)+50).reshape(-1, 1)
+        # #Grado7 para evaluar
+        # model = make_pipeline(PolynomialFeatures(7), LinearRegression())
+        # model.fit(days, count_cases)
+        # plt.figure()
+        # plt.scatter(days, count_cases)
 
-        # MODELO
-        plt.plot(sequence, model.predict(sequence), color="red")
-        plt.title("Prediccion de muertes en un Pais "+valorFiltrar+" - Covid-19")
-        # plt.title("Prediccion de muertes departamento "+valorFiltrar+"\n por Covid19 Regresion Polinomial")
-        plt.savefig('./helloworld/static/img.png')
-        plt.cla()
+        # # MODELO
+        # plt.plot(sequence, model.predict(sequence), color="red")
+        # plt.title("Prediccion de muertes en un Pais "+valorFiltrar+" - Covid-19")
+        # # plt.title("Prediccion de muertes departamento "+valorFiltrar+"\n por Covid19 Regresion Polinomial")
+        # plt.savefig('./helloworld/static/img.png')
+        # plt.cla()
         
     def analizar6(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max,region):
         dataTemp = pd.read_csv('archivo.csv')
         
-        if(filtrar=="si"):
+        # if(filtrar=="si"):
             
-            #dataTemp = pd.read_csv('archivo.csv')
-            newData = dataTemp[columnaFiltrar] == valorFiltrar
-            data = dataTemp[newData]
+        #     #dataTemp = pd.read_csv('archivo.csv')
+        #     newData = dataTemp[columnaFiltrar] == valorFiltrar
+        #     data = dataTemp[newData]
             
-            dataTemp=data
+        #     dataTemp=data
 
-        # dataTemp[dias]= pd.to_datetime(dataTemp[dias])
-        # dataTemp[dias]=dataTemp[dias].map(dt.datetime.toordinal)
-        X = np.asarray(dataTemp[dias].array)[:,np.newaxis]
-        Y = np.asarray(dataTemp[infectados])[:,np.newaxis]
+        # # dataTemp[dias]= pd.to_datetime(dataTemp[dias])
+        # # dataTemp[dias]=dataTemp[dias].map(dt.datetime.toordinal)
+        # X = np.asarray(dataTemp[dias].array)[:,np.newaxis]
+        # Y = np.asarray(dataTemp[infectados])[:,np.newaxis]
         
-        #AJUSTAMOS EL MODELO
-        linear_regressor = LinearRegression()
-        linear_regressor.fit(X, Y)
-        Y_pred = linear_regressor.predict(X)
-        #Creamos la grafica
-        title = "Analisis del Numero de muertes en un pais"+valorFiltrar+"\n"+'Modelo: Y = ' + str(linear_regressor.coef_[0][0]) + 'X+' + str(linear_regressor.intercept_[0])
-        plt.title("Regresion lineal polinomial \n" + title, fontsize=9)
-        plt.xlabel("Eje X "+dias)
-        plt.ylabel("Eje Y "+infectados)
-        plt.scatter(X, Y)
-        plt.plot(X, Y_pred, color='red')
-        plt.savefig('./helloworld/static/img.png')
-        plt.cla()
+        # #AJUSTAMOS EL MODELO
+        # linear_regressor = LinearRegression()
+        # linear_regressor.fit(X, Y)
+        # Y_pred = linear_regressor.predict(X)
+        # #Creamos la grafica
+        # title = "Analisis del Numero de muertes en un pais"+valorFiltrar+"\n"+'Modelo: Y = ' + str(linear_regressor.coef_[0][0]) + 'X+' + str(linear_regressor.intercept_[0])
+        # plt.title("Regresion lineal polinomial \n" + title, fontsize=9)
+        # plt.xlabel("Eje X "+dias)
+        # plt.ylabel("Eje Y "+infectados)
+        # plt.scatter(X, Y)
+        # plt.plot(X, Y_pred, color='red')
+        # plt.savefig('./helloworld/static/img.png')
+        # plt.cla()
         
     def analizar8(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max,region):
 
