@@ -222,39 +222,39 @@ def Reporte5(request):
     
     
 def Reporte6(request):
-    pass
-    # try:
-    #     if request.method == "POST":
-    #         variable1 = request.POST['variable1']
-    #         variable2 = request.POST['variable2']
+    #pass
+    try:
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
 
-    #         filtrar=request.POST['filtrar']
-    #         columnaFiltrar=""
-    #         valorFiltrar=""
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
             
-    #         if(filtrar=="si"):
-    #             columnaFiltrar=request.POST['columnaFiltrar']
-    #             valorFiltrar=request.POST['valorFiltrar']
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
             
             
-    #         reporte4=Prediccion4();
-    #         reporte4.analizar6 (variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
+            reporte4=Prediccion4();
+            reporte4.analizar6 (variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
             
-    #         titulo="Análisis del número de muertes por coronavirus en un País."
-    #         descripcion=""
+            titulo="Análisis del número de muertes por coronavirus en un País."
+            descripcion=""
             
-    #         newcode=Codigo64()
-    #         context={
-    #             "titulo":titulo,
-    #             "codigo":newcode.obtenerCodigo(),
-    #         }
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "codigo":newcode.obtenerCodigo(),
+            }
             
-    #         return render(request,'reporte.html',context)
-    #     else:
-    #         return render(request,'reporte.html')
+            return render(request,'reporte.html',context)
+        else:
+            return render(request,'reporte.html')
             
-    # except:
-    #     return render(request,'principal.html')
+    except:
+        return render(request,'principal.html')
 
 
 
@@ -263,79 +263,79 @@ def Reporte7(request):
 
 
 def Reporte8(request):
-    pass
-    # try:
-    #     if request.method == "POST":
-    #         variable1 = request.POST['variable1']
-    #         variable2 = request.POST['variable2']
+    #pass
+    try:
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
 
-    #         filtrar=request.POST['filtrar']
-    #         columnaFiltrar=""
-    #         valorFiltrar=""
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
             
-    #         if(filtrar=="si"):
-    #             columnaFiltrar=request.POST['columnaFiltrar']
-    #             valorFiltrar=request.POST['valorFiltrar']
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
             
-    #         reporte4=Prediccion4();
-    #         reporte4.analizar8("",variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
+            reporte4=Prediccion4();
+            reporte4.analizar8("",variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
             
-    #         titulo="Predicción de casos de un país para un año."
-    #         descripcion=""
+            titulo="Predicción de casos de un país para un año."
+            descripcion=""
             
-    #         newcode=Codigo64()
-    #         context={
-    #             "titulo":titulo,
-    #             "codigo":newcode.obtenerCodigo(),
-    #         }
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "codigo":newcode.obtenerCodigo(),
+            }
             
-    #         return render(request,'reporte.html',context)
-    #     else:
-    #        return render(request,'principal.html') 
+            return render(request,'reporte.html',context)
+        else:
+           return render(request,'principal.html') 
             
-    # except:
-    #     return render(request,'principal.html')
+    except:
+        return render(request,'principal.html')
 
 #Tendencia de la vacunación de en un País. 
 
 def Reporte9(request):
-    pass
-    # try:
-    #     if request.method == "POST":
-    #         variable1 = request.POST['variable1']
-    #         variable2 = request.POST['variable2']
-    #         filtrar=request.POST['filtrar']
-    #         columnaFiltrar=""
-    #         valorFiltrar=""
-    #         min = request.POST['min']
-    #         max = request.POST['max']
+    #pass
+    try:
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
+            min = request.POST['min']
+            max = request.POST['max']
 
-    #         print(min)
-    #         print(max)
+            print(min)
+            print(max)
             
             
-    #         if(filtrar=="si"):
-    #             columnaFiltrar=request.POST['columnaFiltrar']
-    #             valorFiltrar=request.POST['valorFiltrar']
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
             
-    #         reporte1=Prediccion1();
-    #         reporte1.analizar9(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
+            reporte1=Prediccion1();
+            reporte1.analizar9(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
             
-    #         titulo="Tendencia de la vacunación de en un País."
+            titulo="Tendencia de la vacunación de en un País."
 
 
-    #         newcode=Codigo64()
-    #         context={
-    #             "titulo":titulo,
-    #             "codigo":newcode.obtenerCodigo(),
-    #         }
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "codigo":newcode.obtenerCodigo(),
+            }
             
-    #         return render(request,'reporte.html',context)
-    #     else:
-    #         return render(request,'principal.html')
+            return render(request,'reporte.html',context)
+        else:
+            return render(request,'principal.html')
             
-    # except:
-    #     return render(request,'principal.html')
+    except:
+        return render(request,'principal.html')
 
 
 
@@ -352,39 +352,39 @@ def Reporte13(request):
 
 #Predicción de casos confirmados por día
 def Reporte25(request):
-    # try:
-    #     if request.method == "POST":
-    #         variable1 = request.POST['variable1']
-    #         variable2 = request.POST['variable2']
-    #         filtrar=request.POST['filtrar']
-    #         columnaFiltrar=""
-    #         valorFiltrar=""
-    #         min = request.POST['min']
-    #         max = request.POST['max']
+    try:
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
+            min = request.POST['min']
+            max = request.POST['max']
             
             
-    #         if(filtrar=="si"):
-    #             columnaFiltrar=request.POST['columnaFiltrar']
-    #             valorFiltrar=request.POST['valorFiltrar']
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
             
-    #         reporte25=Prediccion25();
-    #         reporte25.analizar25(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
+            reporte25=Prediccion25();
+            reporte25.analizar25(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
             
-    #         titulo="Predicción de casos confirmados por día"
+            titulo="Predicción de casos confirmados por día"
 
 
-    #         newcode=Codigo64()
-    #         context={
-    #             "titulo":titulo,
-    #             "codigo":newcode.obtenerCodigo(),
-    #         }
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "codigo":newcode.obtenerCodigo(),
+            }
             
-    #         return render(request,'reporte.html',context)
-    #     else:
+            return render(request,'reporte.html',context)
+        else:
             
-    #         return render(request,'principal.html')
+            return render(request,'principal.html')
             
-    # except:
-    #     return render(request,'principal.html')
-        pass
+    except:
+        return render(request,'principal.html')
+        #pass
 
