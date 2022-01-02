@@ -430,13 +430,13 @@ def Reporte13(request):
 
             #Como se puede apreciar en la imagen, la predicción toma una forma lineal (puntos azules) y los datos reales (puntos rojos), en realidad tienen muy poca correlación con la predicción.
             #sea positiva o negativa. El número total de casos fallecidos.
-            titulo="Muertes promedio por casos confirmados y edad de covid 19\n en un País.\n"
-            desc="\n\nSe calculan los centroides y estan\n"
+            titulo="Muertes promedio por casos confirmados y edad de covid 19\n en un País en "+pais+"\n"
+            desc="\n\nSe calculan los centroides y estan a "+min+" unidades\n"
             desc+="representados por los puntos negros,\n"
-            desc+="en la siguiente tabla se pueden ven los \n"
+            desc+="en la siguiente tabla se pueden ver los \n"
             desc+="promedios(Mortalidad e infectados) en relacion a la edad\n"
             desc+="El eje X representa la cantidad de muertes \n"
-            desc+="El eje Y representa la cantidad de infectados \n"
+            #desc+="El eje Y representa la cantidad de infectados \n"min
             newcode=Codigo64()
             context={
                 "titulo":titulo,

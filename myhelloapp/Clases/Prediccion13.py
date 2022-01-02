@@ -32,12 +32,8 @@ class Prediccion13:
 
             a4=[[i[0]],[i[1]],[i[2]]]
             #a4+=[[i[0]],[i[1]],[i[2]]]
-            print("DATA2")
-            print(a4)
             self.promedios.append(a4)
-            ##print(i)
-        print("PROMEDIOS")
-        print(self.promedios)
+
         plt.scatter(X[:,0],X[:,1], c=kmeans.labels_, cmap ='rainbow')
         #para imprimir centroides
         plt.scatter(kmeans.cluster_centers_[:,0],kmeans.cluster_centers_[:,1],color='black')
