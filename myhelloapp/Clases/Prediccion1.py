@@ -66,7 +66,7 @@ class Prediccion1:
         # plt.ylim(0,10000)
         
         title = 'Degree = {}; RMSE = {}; R2 = {}'.format(poly_degree, round(rmse,2), round(r2,2))
-        plt.title("Prediccion de infectado de COVID en "+valorFiltrar+"\n" + title, fontsize=10)
+        plt.title("Tendencia de infeccion COVID en "+valorFiltrar+"\n" + title, fontsize=10)
         plt.xlabel('x')
         plt.ylabel('y')
         try:
@@ -135,11 +135,7 @@ class Prediccion1:
         plt.xlabel('x')
         plt.ylabel('y')
         
-        try:
-            remove("./helloworld/static/img.png")
-            print("IMAGEN ANTERIOR ELIMINADA")
-        except:
-            print("imagenn anterior sin eliminar")
+
 
         plt.savefig('./helloworld/static/img.png')
         plt.cla()
