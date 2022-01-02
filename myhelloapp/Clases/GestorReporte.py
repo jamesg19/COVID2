@@ -82,7 +82,7 @@ class GestorReporte:
         elif(tipo=="12"):
             return ""
         elif(tipo=="13"):
-            return ""
+            return "Muertes promedio por casos confirmados y edad de covid 19 en un País."
         elif(tipo=="14"):
             return ""
         elif(tipo=="15"):
