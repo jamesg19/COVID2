@@ -452,7 +452,48 @@ def Reporte13(request):
             
     # except:
     #     return render(request,'principal.html')
+    
+#Reporte14 Muertes según regiones de un país - Covid 19. 
+def Reporte14(request):
+    #try
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
+            min=request.POST['min']
+            pais=request.POST['pais']
+            
+            reporte14=Prediccion13();
+            reporte14.analizar14(variable1,variable2,min,pais)
 
+
+            titulo="Muertes según regiones de un país - Covid 19. en "+pais+"\n"
+            desc="Hace de un calculo de las muertes por region\n"
+            desc+="del pais: "+pais+" analiza los datos ingresados\n"
+            desc+="y hace una estimacion en base a cada region\n"
+            desc+="utiliando regresion en sklearn.\n"
+            desc+="El eje X depresenta las regiones y cada\n"
+            desc+="region cuenta con un identificador (Ver tabla)\n"
+            desc+="El eje Y representa el total de fallecidos\n"
+
+
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "codigo":newcode.obtenerCodigo(),
+                "desc":desc,
+                "variable1":reporte14.regiones,
+                
+            }
+            
+            return render(request,'reporte14.html',context)
+        else:
+            
+            return render(request,'principal.html')
+    # except:
+    #     return render(request,'principal.html')
+    
+    
+#reporte22
 def Reporte22(request):
     #try:
         if request.method == "POST":
