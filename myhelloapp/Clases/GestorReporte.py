@@ -78,7 +78,7 @@ class GestorReporte:
         elif(tipo=="10"):
             return "Ánalisis Comparativo de Vacunaciópn entre 2 paises"
         elif(tipo=="11"):
-            return ""
+            return "Porcentaje de hombres infectados por covid-19 en un País desde el primer caso activo"
         elif(tipo=="12"):
             return ""
         elif(tipo=="13"):

@@ -30,28 +30,42 @@
     <br>
     <div align="center">
         <br>
-    <h2>Parametros Reporte15: {{titulo}}</h2>
+    <h2>Reporte11 Parametros {{titulo}}</h2>
     <br><br>
 
-    <form id="registro" name="registro" action="Reporte15" enctype="multipart/form-data"  method="POST" >
-      
+    <form action="Reporte11" enctype="multipart/form-data"  method="POST" >
       {% csrf_token %}
       <div class="row">
         <div class="col">
         </div>
-        <textarea id="variable1" name="variable1" style="display:none;"   nowrap="nowrap" wrap="off" onkeyup="keyup(this, event)"></textarea>
-        
-        <div  class="col">
-          <h3>Departamentos de un pais:</h3>
-          
+        <div class="col">
+          <h4>Selecciona el eje X (tiempo)</h4>
+          <select class="custom-select"  id="variable1" name="variable1">
             {%for art in variable1 %}
-            <br>
-            <label for="{{art}}" >{{art}}</label>
-            <input  type="checkbox" value="{{art}}" name="variable2" id="variable2" class="valores"  >
+            <option value="{{art}}">{{art}}</option>
             {% endfor %}
+          </select>
+        </div>
+        <div class="col">
+          <h4>Selecciona el eje Y (Casos Covid Hombres)</h4>
+          <select class="custom-select"  id="variable2" name="variable2">
+            {%for art in variable1 %}
+            <option value="{{art}}">{{art}}</option>
+            {% endfor %}
+          </select>
+
 
         </div>
-        
+        <div class="col">
+          <h4>Sele (Casos Covid Mujeres)</h4>
+          <select class="custom-select"  id="variable3" name="variable3">
+            {%for art in variable1 %}
+            <option value="{{art}}">{{art}}</option>
+            {% endfor %}
+          </select>
+
+
+        </div>
         <div class="col">
         </div>
     </div>
@@ -60,34 +74,70 @@
       
       <div class="col">
       </div>
-      <div style="display:none" class="col">
+      <div class="col">
       
           <div class="slidecontainer">
-            <input type="range" min="0" max="4" value=3 class="slider" id="min" name="min">
+            <input type="range" min="0" max="100" value=0 class="slider" id="min" name="min">
             <p>MINIMO: <span id="demo1"></span></p>
           </div>
       </div>
 
-      <div style="display:none" class="col">
+      <div class="col">
       
-        <div style="display:none" class="slidecontainer">
-          <input style="display:none" type="range" min="1" max="5" value="3" class="slider" id="max" name="max">
-          <p style="display:none" >MAXIMO (Tiempo): <span id="demo2"></span></p>
+        <div class="slidecontainer">
+          <input type="range" min="1" max="400" value="50" class="slider" id="max" name="max">
+          <p>MAXIMO DIAS: <span id="demo2"></span></p>
         </div>
       </div>
       <div class="col">
       </div>
-        
+        <script>
+            var slider1 = document.getElementById("min");
+            var output1 = document.getElementById("demo1");
+            output1.innerHTML = slider1.value;
+            
+            slider1.oninput = function() {
+              slider1.value=this.value;
+              output1.innerHTML = this.value;
+            }
+        </script>
+        <script>
+          var slider2 = document.getElementById("max");
+          var output = document.getElementById("demo2");
+          output.innerHTML = slider2.value;
+          
+          slider2.oninput = function() {
+            slider2.value=this.value;
+            output.innerHTML = this.value;
+          }
+      </script>
     </div>
+
+    
+
+
+
+
 
     <div class="row">
       <div class="col">
       </div>
       <div class="col">
-      
+        <h4>Desea filtar la busqueda?</h4>
+        <label for="" >SI</label>
+        <input type="radio" value="si" name="filtrar" id="filtrar" required class="filtra">
+        <label for="" >NO</label>
+        <input type="radio" value="no" name="filtrar" id="filtrar" required class="filtra">
+        <label for="columnaFiltrar" >Columna que desea filtrar</label>
+        <select class="custom-select"  id="columnaFiltrar" name="columnaFiltrar">
+          {%for art in variable1 %}
+          <option value="{{art}}">{{art}}</option>
+          {% endfor %}
+        </select>
 
-        <label for="columnaFiltrar" >Ingresa el nombre del pais</label>
-        <input class="form-control mr-sm-2" value="PAIS" name="pais" required id="pais" type="text" placeholder="Filtrar" aria-label="Filtrar">
+
+        <label for="columnaFiltrar" >Ingresa el parametro de filtrado</label>
+        <input class="form-control mr-sm-2" name="valorFiltrar" id="valorFiltrar" type="text" placeholder="Filtrar" aria-label="Filtrar">
 
       </div>
       <div class="col">
@@ -95,31 +145,13 @@
     </div>
         <br>
         <br>
-        <input name="genera" id="genera" type="button" onclick="enviar()" value="Generar Reporte"/>
+        <input type="submit" value="Generar Reporte"/>
     </form>
-    <script>
-      function enviar(){
-      var checks=document.querySelectorAll('.valores');
-      var area=document.getElementById('variable1'); 
-      var valor="";
-          checks.forEach((e)=>{
-              if(e.checked ==true ){
-                
-                valor+=e.value+",";
-              }
-          });
-          area.value=valor;
-          registro.submit();
 
-      }
-
-        //checkbox.addEventListener('change', (event) => {
-
-          
-        //});
-
-    </script>
     </div>
+
+
+
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     
     <script src="{% static '/assetsNav/bootstrap/js/bootstrap.min.js'%}"></script>
@@ -127,6 +159,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 </body>
 

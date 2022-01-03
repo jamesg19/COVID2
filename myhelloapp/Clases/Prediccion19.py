@@ -15,7 +15,6 @@ class Prediccion19:
         
         dataTemp = pandass.read_csv('archivo.csv')
         
-
         if(filtrar=="si"):
 
             newData = dataTemp[columnaFiltrar] == valorFiltrar
@@ -65,7 +64,7 @@ class Prediccion19:
         plt.plot(X_NEW,Y_NEW,color='red',linewidth=3)
 
         plt.grid()
-        plt.xlim(x_new_min,x_new_max)
+        plt.xlim(x_new_min,x_new_max+100)
         plt.ylim(0,300)
 
         title = 'Degree = {}; RMSE = {}; R2 = {}'.format(grado,round(rmse,2),round(r2,2))

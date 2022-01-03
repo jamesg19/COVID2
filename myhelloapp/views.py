@@ -10,6 +10,7 @@ from myhelloapp.Clases.Codigo64 import Codigo64
 from myhelloapp.Clases.GestorReporte import GestorReporte
 from myhelloapp.Clases.LeerColumnas import LeerColumnas
 from myhelloapp.Clases.Prediccion1 import Prediccion1
+from myhelloapp.Clases.Prediccion11 import Prediccion11
 from myhelloapp.Clases.Prediccion13 import Prediccion13
 from myhelloapp.Clases.Prediccion15 import Prediccion15
 from myhelloapp.Clases.Prediccion19 import Prediccion19
@@ -442,7 +443,52 @@ def Reporte9(request):
 def Reporte10(request):
     pass
 def Reporte11(request):
-    pass
+    #try:
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
+            variable3 = request.POST['variable3']
+            min = request.POST['min']
+            max = request.POST['max']
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
+            
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
+            
+            
+            
+            
+            reporte11=Prediccion11();
+            reporte11.analizar11(variable1,variable2,variable3,filtrar,columnaFiltrar,valorFiltrar,max)
+            var=reporte11.infectados2
+            titulo="Porcentaje de hombres infectados por covid-19 en un País desde el primer caso activo"
+            desc="\nSe estima que el "+var+"% de \n"
+            desc+="infectados son hombres y le utiliza la herramienta\n"
+            desc+="scikit-learn con Regresion Polinomial Grado:4\n"
+            desc+="Los puntos azules representan los casos reales\n"
+            desc+=" y la linea roja representa una prediccion de \n"
+            desc+="de hombres infectados."
+           
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "codigo":newcode.obtenerCodigo(),
+                "desc":desc,
+            }
+
+            return render(request,'reporte.html',context)
+        else:
+            return render(request,'principal.html')
+            
+    # except:
+    #     return render(request,'principal.html')
+    
+    
+    
+    
 def Reporte12(request):
     pass
 
@@ -560,7 +606,7 @@ def Reporte15(request):
     #     return render(request,'principal.html') 
     
 def Reporte19(request):
-    try:
+    #try:
         if request.method == "POST":
             variable1 = request.POST['variable1']
             variable2 = request.POST['variable2']
@@ -597,8 +643,8 @@ def Reporte19(request):
         else:
             return render(request,'principal.html')
             
-    except:
-        return render(request,'principal.html')    
+    # except:
+    #     return render(request,'principal.html')    
     
     
     
