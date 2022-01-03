@@ -10,6 +10,7 @@ from myhelloapp.Clases.Codigo64 import Codigo64
 from myhelloapp.Clases.GestorReporte import GestorReporte
 from myhelloapp.Clases.LeerColumnas import LeerColumnas
 from myhelloapp.Clases.Prediccion1 import Prediccion1
+from myhelloapp.Clases.Prediccion10 import Prediccion10
 from myhelloapp.Clases.Prediccion11 import Prediccion11
 from myhelloapp.Clases.Prediccion12 import Prediccion12
 from myhelloapp.Clases.Prediccion13 import Prediccion13
@@ -443,7 +444,77 @@ def Reporte9(request):
 
 
 def Reporte10(request):
-    pass
+    #try:
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
+            variable3 = request.POST['variable3']
+            poblacion1Total = request.POST['poblacion1']
+            poblacion2Total = request.POST['poblacion2']
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
+            min = request.POST['min']
+            max = request.POST['max']
+
+            print(min)
+            print(max)
+            
+            
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
+            
+            reporte10=Prediccion10();
+            reporte10.analizar10(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,max,"img")
+            infectados1=reporte10.poblacion
+            
+            reporte10B=Prediccion10();
+            reporte10B.analizar10(variable1,variable3,filtrar,columnaFiltrar,valorFiltrar,max,"img1")
+            infectados2=reporte10B.poblacion
+            
+            p1=str(round(( int(infectados1)/int(poblacion1Total)),5))
+            p2=str(round((int(infectados2)/int(poblacion2Total) ),5))
+            ul=""
+            if(p1>p2):
+                ul+="y se determina que el pais "+variable2+" esta\n"
+                ul+="vacunando mas que "+variable3+"\n"
+            elif(p2>p1):
+                ul+="y se determina que el pais "+variable3+" esta\n"
+                ul+="vacunando mas que "+variable2+"\n"
+            titulo="Ánalisis Comparativo de Vacunación entre 2 paises. "
+            desc="Se realiza un analisis de vacunancion entre dos paises\n"
+            desc+="y para el pais: \""+variable2+"\" se tiene una poblacion \n"
+            desc+="de:"+str(poblacion1Total)+" y la cantidad de vacunados: "+str(infectados1)+"\n"
+            desc+="con un porcentaje de vacunacion "+p1+"% \n "
+            desc+="Para el pais: \""+variable3+"\" se tiene una poblacion \n"
+            desc+="de:"+str(poblacion2Total)+" y la cantidad de vacunados: "+str(infectados2)+"\n"
+            desc+="con un porcentaje de vacunacion "+p2+"% \n "
+            desc+=ul
+
+
+            newcode=Codigo64()
+            newcode2=Codigo64()
+            context={
+                "titulo":titulo,
+                "desc":desc,
+                "codigo":newcode.obtenerCodigo(),
+                "codigo2":newcode2.obtenerCodigo2(),
+            }
+            
+            return render(request,'reporte12.html',context)
+        else:
+            return render(request,'principal.html')
+            
+    # except:
+    #     return render(request,'principal.html')
+    
+
+
+
+
+
+
 def Reporte11(request):
     #try:
         if request.method == "POST":
