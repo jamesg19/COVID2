@@ -84,9 +84,9 @@ class GestorReporte:
         elif(tipo=="13"):
             return "Muertes promedio por casos confirmados y edad de covid 19 en un País."
         elif(tipo=="14"):
-            return ""
+            return "Muertes según regiones de un país - Covid 19. "
         elif(tipo=="15"):
-            return ""
+            return "Tendencia de casos confirmados de Coronavirus en un departamento de un País. "
         elif(tipo=="16"):
             return ""
         elif(tipo=="17"):
@@ -94,17 +94,17 @@ class GestorReporte:
         elif(tipo=="18"):
             return ""
         elif(tipo=="19"):
-            return ""
+            return "Predicción de muertes en el último día del primer año de infecciones en un país"
         elif(tipo=="20"):
             return ""
         elif(tipo=="21"):
             return ""
         elif(tipo=="22"):
-            return ""
+            return "Tasa de mortalidad por coronavirus (COVID-19) en un país."
         elif(tipo=="23"):
-            return ""
+            return " Factores de muerte por COVID-19 en un país. "
         elif(tipo=="24"):
-            return ""
+            return "Comparación entre el número de casos detectados y el número de pruebas de un país. "
         elif(tipo=="25"):
             return "Predicción de casos confirmados por día"
         

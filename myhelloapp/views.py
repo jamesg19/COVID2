@@ -11,6 +11,8 @@ from myhelloapp.Clases.GestorReporte import GestorReporte
 from myhelloapp.Clases.LeerColumnas import LeerColumnas
 from myhelloapp.Clases.Prediccion1 import Prediccion1
 from myhelloapp.Clases.Prediccion13 import Prediccion13
+from myhelloapp.Clases.Prediccion15 import Prediccion15
+from myhelloapp.Clases.Prediccion19 import Prediccion19
 from myhelloapp.Clases.Prediccion2 import Prediccion2
 from myhelloapp.Clases.Prediccion22 import Prediccion22
 from myhelloapp.Clases.Prediccion25 import Prediccion25
@@ -77,9 +79,6 @@ def Reporte1(request):
             valorFiltrar=""
             min = request.POST['min']
             max = request.POST['max']
-
-            print(min)
-            print(max)
             
             
             if(filtrar=="si"):
@@ -491,6 +490,84 @@ def Reporte14(request):
             return render(request,'principal.html')
     # except:
     #     return render(request,'principal.html')
+    
+    
+def Reporte15(request):
+    #try
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            pais=request.POST['pais']
+            print("_____________********______________")
+        
+            reporte15=Prediccion15();
+            reporte15.analizar15(variable1[:-1],pais)
+
+
+            titulo="Tendencia de casos confirmados de Coronavirus en \nun departamento del pais "+pais+"\n"
+            desc="\n\nEl proceso de predicción se realizó mediante regresión lineal.\n"
+            desc+=" y la grafica representa la tendencia de los departamentos seleccionados"
+            
+
+
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "codigo":newcode.obtenerCodigo(),
+                "desc":desc,
+                #"variable1":reporte14.regiones,
+                
+            }
+            
+            return render(request,'reporte.html',context)
+        else:
+            
+            return render(request,'principal.html')
+    # except:
+    #     return render(request,'principal.html') 
+    
+def Reporte19(request):
+    try:
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
+            max = request.POST['max']
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
+            
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
+            
+            
+            reporte19=Prediccion19();
+            reporte19.analizar19(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,max)
+            
+            titulo="Predicción de muertes en el último día del primer año \nde infecciones en un país.\n"
+            # de muertes confirmadas y la linea roja representa la prediccion de muertes en dicho pais.
+
+            desc="\n\nSe realiza la prediccion de muertes usando\n"
+            desc+="usando regresion lineal polinomial grado 4\n"
+            desc+="de la columna \""+variable1+"\" como eje X (tiempo)\n"
+            desc+="y la columna \""+variable2+"\" como eje Y (muertes).\n"
+            desc+="la grafica muestra una prediccion a "+max+" dias.\n"
+           
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "codigo":newcode.obtenerCodigo(),#codigo Base64 para imagen del reporte
+                "desc":desc,
+            }
+            
+            return render(request,'reporte.html',context)
+        else:
+            return render(request,'principal.html')
+            
+    except:
+        return render(request,'principal.html')    
+    
+    
+    
     
     
 #reporte22
