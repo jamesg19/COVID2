@@ -151,7 +151,41 @@ def Reporte2(request):
         return render(request,'principal.html')
 
 def Reporte3(request):
-    pass
+    #try:
+        if request.method == "POST":
+            np1 = request.POST['npHoy']
+            np2 = request.POST['npAyer']
+            ts1 = request.POST['tsHoy']
+            ts2 = request.POST['tsAyer']
+
+            
+            reporte3=Prediccion1();
+            
+            
+            titulo="Indice de Progresión de la pandemia. \n"
+            # igual a 0 significa que las epidemias se detienen, es decir, todas las personas que se hicieron un hisopo son negativas para el coronavirus.
+            desc="Donde np (i) representa el número total de casos positivos\n"
+            desc+="de coronavirus el día i (por ejemplo, hoy), np (i-1)\n"
+            desc+="el número total de casos positivos de coronavirus el\n"
+            desc+="día i-1 (por ejemplo, ayer), ts (i) el número total de\n"
+            desc+="hisopos hechos el día i-1. EPI es un número entre 0 y 1.\n"
+            desc+="Cuando EPI es igual a 1, significa que todas las personas\n"
+            desc+="que han tenido un hisopo son positivas para el coronavirus.\n"
+            desc+="Por el contrario, un valor EPI igual a 0 significa que\n"
+            desc+="las epidemias se detienen es decir no hay infectados.\n"
+            desc+="RESULTADO: EPI="+str(reporte3.analizar3(np1,np2,ts1,ts2))+". \n"
+            
+            context={
+                "titulo":titulo,
+                "desc":desc,
+            }
+            
+            return render(request,'reporte3.html',context)
+        else:
+
+            return render(request,'principal.html') 
+    # except:
+    #     return render(request,'principal.html')
 
 
 

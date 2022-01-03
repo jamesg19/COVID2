@@ -207,3 +207,8 @@ class Prediccion1:
         plt.savefig('./helloworld/static/img.png')
         plt.cla()
         
+    def analizar3(self,np1,np2,ts1,ts2):
+        
+        epi=  (int(np1)-int(np2) )/( int(ts1)-int(ts2) ) 
+        return epi
+        

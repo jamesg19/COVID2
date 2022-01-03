@@ -96,7 +96,7 @@ class GestorReporte:
         elif(tipo=="19"):
             return "Predicción de muertes en el último día del primer año de infecciones en un país"
         elif(tipo=="20"):
-            return ""
+            return "20 Tasa de crecimiento de casos de COVID-19 en relación con nuevos casos diarios y tasa de muerte por COVID-19"
         elif(tipo=="21"):
             return ""
         elif(tipo=="22"):
