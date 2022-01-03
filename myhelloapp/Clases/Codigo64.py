@@ -12,4 +12,12 @@ class Codigo64:
         newcode=str(image_64_encode)[2:-1]
         return newcode.replace('\\n', '')
     
+    def obtenerCodigo2(self):
+        image = open('./helloworld/static/img1.png', 'rb')
+        image_read = image.read()
+        image_64_encode = base64Imagen.encodebytes(image_read)
+
+        newcode=str(image_64_encode)[2:-1]
+        return newcode.replace('\\n', '')
+    
     

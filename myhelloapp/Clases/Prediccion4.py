@@ -116,7 +116,15 @@ class Prediccion4:
 
         # dataTemp[dias]= pd.to_datetime(dataTemp[dias])
         # dataTemp[dias]=dataTemp[dias].map(dt.datetime.toordinal)
-        X = np.asarray(dataTemp[dias].array)[:,np.newaxis]
+        
+        xTemp = np.asarray(dataTemp[dias])
+        cases=[]
+        var=0
+        for i in xTemp:
+            var+=1
+            cases.append(var) 
+        
+        X = np.asarray(cases)[:,np.newaxis]
         Y = np.asarray(dataTemp[infectados])[:,np.newaxis]
         
         #AJUSTAMOS EL MODELO
@@ -134,7 +142,7 @@ class Prediccion4:
         plt.cla()
         
     def analizar8(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max,region):
-
+        
         dataTemp = pd.read_csv('archivo.csv')
 
         if(filtrar=="si"):

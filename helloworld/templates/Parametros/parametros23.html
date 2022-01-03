@@ -1,0 +1,173 @@
+{% load static%}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>COVID</title>
+    <link rel="stylesheet" href="{% static '/assetsNav/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static '/assetsNav/fonts/ionicons.min.css'%}">
+    <link rel="stylesheet" href="{% static '/assetsNav/css/gradient-navbar-1.css'%}">
+    <link rel="stylesheet" href="{% static '/assetsNav/css/gradient-navbar.css'%}">
+    <link rel="stylesheet" href="{% static '/assetsNav/css/styles.css'%}">
+    <link rel="stylesheet" href="{% static '/slide/slide.css'%}">
+    <script type="text/javascript" src='https://unpkg.com/xlsx/dist/shim.min.js'></script>
+    <script lang="javascript" src='https://unpkg.com/xlsx/dist/xlsx.full.min.js' ></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-dark navbar-expand-md" id="app-navbar">
+        <div class="container-fluid"><a class="navbar-brand" href="#"><i class="icon ion-ios-infinite" id="brand-logo"></i></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">First Item</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Second Item</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Third Item</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div align="center">
+        <br>
+    <h2>Parametros Reporte23: {{titulo}}</h2>
+    <br><br>
+
+    <form id="registro" name="registro" action="Reporte23" enctype="multipart/form-data"  method="POST" >
+      {% csrf_token %}
+      <div class="row">
+        <div class="col">
+        </div>
+        
+        <div class="col">
+          <h5>Edad </h5>
+          <select class="custom-select"  id="edad" name="edad">
+            {%for art in variable1 %}
+            <option value="{{art}}">{{art}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col">
+          <h5>Sexo (1(Mujeres),2 (Hombres))</h5>
+          <select class="custom-select"  id="sexo" name="sexo">
+            {%for art in variable1 %}
+            <option value="{{art}}">{{art}}</option>
+            {% endfor %}
+          </select>
+
+
+        </div>
+        <div class="col">
+          <h5>Muertes: (1 murió, 2 si vive)</h5>
+          <select class="custom-select"  id="muertes" name="muertes">
+            {%for art in variable1 %}
+            <option value="{{art}}">{{art}}</option>
+            {% endfor %}
+          </select>
+
+
+        </div>
+        <div class="col">
+        </div>
+    </div>  
+
+
+
+
+
+
+      <div class="row">
+        <div class="col">
+        </div>
+        <textarea id="variable1" name="variable1" style="display:none;"   nowrap="nowrap" wrap="off" onkeyup="keyup(this, event)"></textarea>
+        
+        <div  class="col">
+          <h3>Selecciona los factores: </h3>
+          <h5>En la columna factores de debe especificar 1 si tiene el padecimiento y 2 si no lo tiene</h5>
+            {%for art in variable1 %}
+            <br>
+            <label for="{{art}}" >{{art}}</label>
+            <input  type="checkbox" value="{{art}}" name="variable2" id="variable2" class="valores"  >
+            {% endfor %}
+
+        </div>
+        
+        <div class="col">
+        </div>
+    </div>
+    <br>
+    <div class="row" >
+      
+      <div class="col">
+      </div>
+      <div style="display:none" class="col">
+      
+          <div class="slidecontainer">
+            <input type="range" min="0" max="4" value=3 class="slider" id="min" name="min">
+            <p>MINIMO: <span id="demo1"></span></p>
+          </div>
+      </div>
+
+      <div style="display:none" class="col">
+      
+        <div style="display:none" class="slidecontainer">
+          <input style="display:none" type="range" min="1" max="5" value="3" class="slider" id="max" name="max">
+          <p style="display:none" >MAXIMO (Tiempo): <span id="demo2"></span></p>
+        </div>
+      </div>
+      <div class="col">
+      </div>
+        
+    </div>
+
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col">
+      
+
+        <label for="columnaFiltrar" >Ingresa el nombre del pais</label>
+       
+
+      </div>
+      <div class="col">
+      </div>
+    </div>
+        <br>
+        <br>
+        <input name="genera" id="genera" type="button" onclick="enviar()" value="Generar Reporte"/>
+    </form>
+    <script>
+      function enviar(){
+      var checks=document.querySelectorAll('.valores');
+      var area=document.getElementById('variable1'); 
+      var valor="";
+          checks.forEach((e)=>{
+              if(e.checked ==true ){
+                
+                valor+=e.value+",";
+              }
+          });
+          area.value=valor;
+          registro.submit();
+
+      }
+
+        //checkbox.addEventListener('change', (event) => {
+
+          
+        //});
+
+    </script>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    
+    <script src="{% static '/assetsNav/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</body>
+
+</hmtl>

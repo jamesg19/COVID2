@@ -26,10 +26,18 @@ class Prediccion2:
             Y = np.asarray(dataTemp[infectados].array)[:,np.newaxis]
             
 
-        # dataTemp[dias]= pd.to_datetime(dataTemp[dias])
-        # dataTemp[dias]=dataTemp[dias].map(dt.datetime.toordinal)
+        #dataTemp[dias]= pd.to_datetime(dataTemp[dias])
+        #dataTemp[dias]=dataTemp[dias].map(dt.datetime.toordinal)
         
-        X = np.asarray(dataTemp[dias].array)[:,np.newaxis]
+        
+        xTemp = np.asarray(dataTemp[dias])
+        cases=[]
+        var=0
+        for i in xTemp:
+            var+=1
+            cases.append(var) 
+        
+        X = np.asarray(cases)[:,np.newaxis]
         Y = np.asarray(dataTemp[infectados].array)[:,np.newaxis]
 
 

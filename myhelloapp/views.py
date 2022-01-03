@@ -11,11 +11,13 @@ from myhelloapp.Clases.GestorReporte import GestorReporte
 from myhelloapp.Clases.LeerColumnas import LeerColumnas
 from myhelloapp.Clases.Prediccion1 import Prediccion1
 from myhelloapp.Clases.Prediccion11 import Prediccion11
+from myhelloapp.Clases.Prediccion12 import Prediccion12
 from myhelloapp.Clases.Prediccion13 import Prediccion13
 from myhelloapp.Clases.Prediccion15 import Prediccion15
 from myhelloapp.Clases.Prediccion19 import Prediccion19
 from myhelloapp.Clases.Prediccion2 import Prediccion2
 from myhelloapp.Clases.Prediccion22 import Prediccion22
+from myhelloapp.Clases.Prediccion23 import Prediccion23
 from myhelloapp.Clases.Prediccion25 import Prediccion25
 from myhelloapp.Clases.Prediccion4 import Prediccion4
 # Create your views here.
@@ -490,7 +492,72 @@ def Reporte11(request):
     
     
 def Reporte12(request):
-    pass
+    #try:
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
+            variable3 = request.POST['variable3']
+            poblacion1Total = request.POST['poblacion1']
+            poblacion2Total = request.POST['poblacion2']
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
+            min = request.POST['min']
+            max = request.POST['max']
+
+            print(min)
+            print(max)
+            
+            
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
+            
+            reporte12=Prediccion12();
+            reporte12.analizar12(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,max,"img")
+            infectados1=reporte12.poblacion
+            reporte12B=Prediccion12();
+            reporte12B.analizar12(variable1,variable3,filtrar,columnaFiltrar,valorFiltrar,max,"img1")
+            infectados2=reporte12B.poblacion
+            p1=str(round(( int(infectados1)/int(poblacion1Total)),5))
+            p2=str(round((int(infectados2)/int(poblacion2Total) ),5))
+            ul=""
+            if(p1>p2):
+                ul+="y se determina que el pais "+variable2+" esta\n"
+                ul+="siendo mas afectado que "+variable3+"\n"
+            elif(p2>p1):
+                ul+="y se determina que el pais "+variable3+" esta\n"
+                ul+="siendo mas afectado que "+variable2+"\n"
+            titulo="Ánalisis Comparativo entres 2 paises o continentes"
+            desc="Se realiza un analisis entre los dos paises o continentes\n"
+            desc+="y para el pais: \""+variable2+"\" se tiene una poblacion \n"
+            desc+="de:"+str(poblacion1Total)+" y la cantidad de infectados: "+str(infectados1)+"\n"
+            desc+="con un porcentaje de infeccion "+p1+"% \n "
+            desc+="Para el pais: \""+variable3+"\" se tiene una poblacion \n"
+            desc+="de:"+str(poblacion2Total)+" y la cantidad de infectados: "+str(infectados2)+"\n"
+            desc+="con un porcentaje de infeccion "+p2+"% \n "
+            desc+=ul
+
+
+            newcode=Codigo64()
+            newcode2=Codigo64()
+            context={
+                "titulo":titulo,
+                "desc":desc,
+                "codigo":newcode.obtenerCodigo(),
+                "codigo2":newcode2.obtenerCodigo2(),
+            }
+            
+            return render(request,'reporte12.html',context)
+        else:
+            return render(request,'principal.html')
+            
+    # except:
+    #     return render(request,'principal.html')
+    
+    
+    
+    
 
 #Muertes promedio por casos confirmados y edad de covid 19 en un País.
 def Reporte13(request):
@@ -577,7 +644,7 @@ def Reporte15(request):
         if request.method == "POST":
             variable1 = request.POST['variable1']
             pais=request.POST['pais']
-            print("_____________********______________")
+            
         
             reporte15=Prediccion15();
             reporte15.analizar15(variable1[:-1],pais)
@@ -585,7 +652,10 @@ def Reporte15(request):
 
             titulo="Tendencia de casos confirmados de Coronavirus en \nun departamento del pais "+pais+"\n"
             desc="\n\nEl proceso de predicción se realizó mediante regresión lineal.\n"
-            desc+=" y la grafica representa la tendencia de los departamentos seleccionados"
+            desc+="y la grafica representa la tendencia de los departamentos.\n"
+            desc+="La linea roja representa la tendencia de los casos confirmados\n"
+            desc+="y los puntos azules representan los casos reales.\n"
+            desc+="Se ha utilizado regresion lineal grado: 9\n"
             
 
 
@@ -689,7 +759,57 @@ def Reporte22(request):
             
     # except:
     #     return render(request,'principal.html')
+    
+      
+    
+def Reporte23(request):
+        #try
+        if request.method == "POST":
+            sexo = request.POST['sexo']
+            edad = request.POST['edad']
+            muertes = request.POST['muertes']
+            factores = request.POST['variable1']
+            # pais=request.POST['pais']
+            print("_____________********______________")
+            print(factores)
+            reporte23=Prediccion23();
+            reporte23.analizar23(sexo,edad,muertes,factores[:-1])
+
+
+            titulo="Factores de muerte por COVID-19 en un país."
+            desc="\n\nEl proceso de predicción se realizó mediante regresión lineal.\n"
+            desc+=" y la grafica representa la tendencia de los departamentos seleccionados"
+            
+
+
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "codigo":newcode.obtenerCodigo(),
+                "desc":desc,
+                #"variable1":reporte14.regiones,
+                
+            }
+            
+            return render(request,'reporte.html',context)
+        else:
+            
+            return render(request,'principal.html')
+    # except:
+    #     return render(request,'principal.html')    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 #Predicción de casos confirmados por día
+
 def Reporte25(request):
     try:
         if request.method == "POST":

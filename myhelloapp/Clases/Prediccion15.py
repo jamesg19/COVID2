@@ -13,7 +13,7 @@ class Prediccion15:
         pass
 
     def analizar15(self,listaDepartamentos,pais):   
-        print(listaDepartamentos+" AQUI LLEGA ASI")
+       
         listaColumnas=listaDepartamentos.split(sep=',')
         data = pd.read_csv('archivo.csv')
         LCasos=""
@@ -49,6 +49,6 @@ class Prediccion15:
         plt.figure()
         plt.scatter(DayList, Accumulate)
         plt.plot(seq, polyreg.predict(seq), color="red")
-        plt.title("Trend of confirmed Coronavirus cases \n in the department of Guatemala)")
+        plt.title("Tendencia de Casos confirmados en \n el pais: "+pais)
         plt.savefig('./helloworld/static/img.png')
         plt.cla()

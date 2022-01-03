@@ -80,7 +80,7 @@ class GestorReporte:
         elif(tipo=="11"):
             return "Porcentaje de hombres infectados por covid-19 en un País desde el primer caso activo"
         elif(tipo=="12"):
-            return ""
+            return "Ánalisis Comparativo entres 2 paises o continentes"
         elif(tipo=="13"):
             return "Muertes promedio por casos confirmados y edad de covid 19 en un País."
         elif(tipo=="14"):
@@ -102,7 +102,7 @@ class GestorReporte:
         elif(tipo=="22"):
             return "Tasa de mortalidad por coronavirus (COVID-19) en un país."
         elif(tipo=="23"):
-            return " Factores de muerte por COVID-19 en un país. "
+            return "Factores de muerte por COVID-19 en un país. "
         elif(tipo=="24"):
             return "Comparación entre el número de casos detectados y el número de pruebas de un país. "
         elif(tipo=="25"):
