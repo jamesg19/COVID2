@@ -1,7 +1,10 @@
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.core.files.storage import FileSystemStorage
+from werkzeug.utils import secure_filename
 import pathlib
+from io import StringIO
 from myhelloapp.Clases.Prediccion16 import Prediccion16
 from myhelloapp.Clases.Prediccion17 import Prediccion17
 from myhelloapp.Clases.Prediccion21 import Prediccion21
@@ -36,7 +39,7 @@ def home(request):
 
 
 def procesarArchivo(request):
-    prueba=request.FILES['file1']
+
     extension = request.POST['extension']
     filee = request.POST['area']
     tipoReporte=request.POST['tipoReporte']
@@ -90,11 +93,11 @@ def procesarArchivo(request):
     elif(extension=="xlsx"):
         
         #guarda el EXCEL
-        archivo=open('./Conversiones/archivoT.xlsx','w')
+        archivo=open('./Conversiones/archivoT.json','w')
         archivo.write(filee)
         archivo.close()
         #leemos el archivo
-        read_file=pd.read_excel(r'./Conversiones/archivoT.xlsx')
+        read_file=pd.read_json(r'./Conversiones/archivoT.json')
         #convertimos a CSV
         read_file.to_csv(r'archivo.csv',index="None",header=True)
         
@@ -113,7 +116,7 @@ def procesarArchivo(request):
         
         return render(request,ventana+'.html',context)
     
-    #si es .xlsx
+    #si es json
     elif(str(extension).lower() =="json"):
 
         #guarda el JSON

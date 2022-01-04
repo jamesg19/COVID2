@@ -104,7 +104,9 @@
 
         ext=(/[.]/.exec(input.files[0].name)) ? /[^.]+$/.exec(input.files[0].name)[0] : undefined;
         extension.value=ext;
+        if(ext==='csv'|| ext === 'json'){
 
+        
         if (input.files.length > 0) {
             readFile(input.files[0]);
         }
@@ -120,9 +122,13 @@
         }
         //console.log("CONERTIR A CSV");
         //convertXlsx_To_Csv();
+      }else{
+        convertXlsx_To_Csv();
+
+      }
       }
 
-      
+
       function subir(){
         //file es el id del boton fichero
         var text="";
@@ -176,6 +182,7 @@
 
     const file=document.getElementById('file1').files[0];
     console.log("FILE "+file)
+    const editor=document.getElementById('area');
 
     file.arrayBuffer().then((res)=>{
         let data= new Uint8Array(res);
@@ -191,11 +198,12 @@
           ...x,
         }))
         console.log("james",json);
-        alert(JSON.stringify(json));
-        let fileNameWithout=file.name.substring(0,file.name.indexOf("."));
-        let new_worksheet=XLSX.utils.json_to_sheet(json);
-        let new_workbook=XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(new_workbook,new_worksheet,"CSV_SHEET");
+        editor.value=JSON.stringify(json)
+        //alert(JSON.stringify(json));
+        //let fileNameWithout=file.name.substring(0,file.name.indexOf("."));
+        //let new_worksheet=XLSX.utils.json_to_sheet(json);
+        //let new_workbook=XLSX.utils.book_new();
+        //XLSX.utils.book_append_sheet(new_workbook,new_worksheet,"CSV_SHEET");
 
         //XLSX.writeFile(new_workbook,fileNameWithout+".csv");
     });
@@ -203,30 +211,11 @@
 
   }
 
-  function enviarEmail(){
-    Email.send({
-      Host : "smtp.gmail.com",
-      Username : "james123prueba@gmail.com",
-      Password : "Holamundo2022",
-      To : 'jamesgramajo13@hotmail.com',
-      From : "james123prueba@gmail.com",
-      Subject : "IMPORTANTE",
-      Body : "Holaaaa //XLSX.writeFile(new_workbook,fileNameWithout+".csv");});",
-      Attachments : [
-	{
-		name : "smtpjs.png",
-		path : "https://networkprogramming.files.wordpress.com/2017/11/smtpjs.png"
-	}]
-  }).then(
-    message => alert(message)
-  );
-
-
-  }
+  
 
 
 
-  function convertXlsx_To_Csv(){
+  function convertXlsx_To_Csv2(){
 
     const file=document.getElementById('file1').files[0];
     console.log("FILE "+file)
@@ -246,7 +235,7 @@
           //console.log("x ",x);
         }))
         
-        alert(JSON.stringify(json));
+        //alert(JSON.stringify(json));
         let fileNameWithout=file.name.substring(0,file.name.indexOf("."));
         let new_worksheet=XLSX.utils.json_to_sheet(json);
         let new_workbook=XLSX.utils.book_new();
