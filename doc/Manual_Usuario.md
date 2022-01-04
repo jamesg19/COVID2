@@ -81,32 +81,48 @@ Calculos permitidos en QuetzalDataScience
 
 
 Quetzal es un lenguaje muy sencillo de utilizar por lo que se define la sintaxis del lenguaje
-## Tecnologias <a name="R1"></a>
-## Tecnologias <a name="R2"></a>
-## Tecnologias <a name="R3"></a>
-## Tecnologias <a name="R4"></a>
-## Tecnologias <a name="R5"></a>
-## Tecnologias <a name="R6"></a>
-## Tecnologias <a name="R7"></a>
-## Tecnologias <a name="R8"></a>
-## Tecnologias <a name="R9"></a>
-## Tecnologias <a name="R11"></a>
-## Tecnologias <a name="R11"></a>
-## Tecnologias <a name="R12"></a>
-## Tecnologias <a name="R13"></a>
-## Tecnologias <a name="R14"></a>
-## Tecnologias <a name="R15"></a>
-## Tecnologias <a name="R16"></a>
-## Tecnologias <a name="R17"></a>
-## Tecnologias <a name="R18"></a>
-## Tecnologias <a name="R19"></a>
-## Tecnologias <a name="R20"></a>
-## Tecnologias <a name="R21"></a>
-## Tecnologias <a name="R22"></a>
-## Tecnologias <a name="R23"></a>
-## Tecnologias <a name="R24"></a>
-## Tecnologias <a name="R25"></a>
+## Tendencia de la infección por Covid-19 en un País. <a name="R1"></a>
+Mediante la herramienta scikit learn de regresion lineal hace el calculo de la tendencia de infeccion tomando los datos de fecha, casos de infeccion y pais.
+## Predicción de Infectados en un País. <a name="R2"></a>
+Mediante la herramienta scikit learn de regresion lineal hace el calculo de la prediccion de infeccion tomando los datos de fecha, casos de infeccion y pais.
+## Indice de Progresión de la pandemia. <a name="R3"></a>
+Analiza los datos del dia anterior y posterior y determina el indice de progresion.
+## Predicción de mortalidad por COVID en un Departamento. <a name="R4"></a>
+Realiza una prediccion en base a una regresion lineal polinomial grado 4.
+## Predicción de mortalidad por COVID en un País. <a name="R5"></a>
+Esta prediccion es de suma importancia para estar preparados en las instalaciones de salud de los hospitales y tener un mejor conocimiento de lo que puede ocurrir.
+## Análisis del número de muertes por coronavirus en un País. <a name="R6"></a>
+Hace un analisis en base al numero de muertes por covid de un determinado pais.
+## Tendencia del número de infectados por día de un País. <a name="R7"></a>
+Esta tendencia de numero de infectados por dia se utiliza regresion lineal para hacer las estimaciones correspondientes.
+## Predicción de casos de un país para un año. <a name="R8"></a>
+Esta prediccion toma en cuenta los factores externo y las cepas de COVID en una determinada region por año.
+## Tendencia de la vacunación de en un País.<a name="R9"></a>
+Se basa en los datos proporcionados sobre la cantidad de vacunados en una determinada fecha.
+## Ánalisis Comparativo de Vacunaciópn entre 2 paises.<a name="R10"></a>
+Realiza una comparacion de la cantidad de vacunacion entre dos paises.
+## Porcentaje de hombres infectados por covid-19 en un País desde el primer caso activo<a name="R11"></a>
+Determina el porcentaje de Hombres infectados por covid en un Pais desde el inicio de la pandemia esto hace referencia para saber que sexo es el mas afectado por COVID
+## Ánalisis Comparativo entres 2 paises o continentes.<a name="R12"></a>
+Hace un analisis comparativo entre dos paises en donde determina que pais es el que mejor resultados tiene respecto al dominio de la pandemia.
+## Muertes promedio por casos confirmados y edad de covid 19 en un País.<a name="R13"></a>
+Un porcentaje muy util para determinar el riesgo de mortalidad de la pantemia.
+## Muertes según regiones de un país - Covid 19.<a name="R14"></a>
+Determina que regiones del pais son las que tienen las tasas de mortalidad mas altas.
+## Tendencia de casos confirmados de Coronavirus en un departamento de un País.<a name="R15"></a>
+Predice la tendencia de los casos confirmados y el comportamiento que tendrá a futuro.
+## Porcentaje de muertes frente al total de casos en un país, región o continente.<a name="R16"></a>
+Determina el porcentaje de Hombres infectados por covid en un Pais desde el inicio de la pandemia esto hace referencia para saber que sexo es el mas afectado por COVID
+## Tasa de comportamiento de casos activos en relación al número de muertes en un continente.<a name="R17"></a>
+Realiza una comparacion de la cantidad de vacunacion entre dos paises.
 
+## Tasa de crecimiento de casos de COVID-19 en relación con nuevos casos diarios y tasa de muerte por COVID-19<a name="R20"></a>
+Determina la tasa de crecimeinto de casos de covid respecto a todos los casos diarios en una determinada region.
+## Factores de muerte por COVID-19 en un país.<a name="R23"></a>
+Determina que factores hacen que sea un factor de muerte considerable con contraer COVID.
+
+## Predicción de casos confirmados por día<a name="R25"></a>
+Hace una prediccion sobre los casos que pueden surgir en un dia especifico tomando el cuenta los datos de resultados positivos de dias anteriores
 
 
 
