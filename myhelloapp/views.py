@@ -97,7 +97,7 @@ def Reporte1(request):
             reporte1.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
             
             titulo="Tendencia de infeccion en un pais \n"
-            desc="La tendencia de las infecciones en un país se lleva \na cabo a través de un máximo de: "+max+"(unidades de tiempo)\nlo cual en base a los datos obtenidos se hace \nuna estimación de la tendencia para los proximos \n"+max+" (unidades tiempo)."
+            desc="\nLa tendencia de las infecciones en un país se lleva \na cabo a través de un máximo de: "+max+"(unidades de tiempo)\nlo cual en base a los datos obtenidos se hace \nuna estimación de la tendencia para los proximos \n"+max+" (unidades tiempo)."
             desc+="\nAdemas se utiliza la columna "+variable1+" en el eje X \ny  la columna "+variable2+" en el eje Y "
             
             newcode=Codigo64()
@@ -137,7 +137,7 @@ def Reporte2(request):
             reporte2.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Pais")
             
             titulo="PREDICCION DE INFECTADOS DE UN PAIS"
-            desc="la prediccion de infectados en un país se lleva \n"
+            desc="\nLa prediccion de infectados en un país se lleva \n"
             desc+="a cabo a través de un máximo de: "+max+"(unidades tiempo)\n"
             desc+="lo cual en base a los datos obtenidos se hace una \n"
             desc+="estimación de la tendencia para los proximos "+max+"\n"
@@ -172,7 +172,7 @@ def Reporte3(request):
             
             titulo="Indice de Progresión de la pandemia. \n"
             # igual a 0 significa que las epidemias se detienen, es decir, todas las personas que se hicieron un hisopo son negativas para el coronavirus.
-            desc="Donde np (i) representa el número total de casos positivos\n"
+            desc="\nDonde np (i) representa el número total de casos positivos\n"
             desc+="de coronavirus el día i (por ejemplo, hoy), np (i-1)\n"
             desc+="el número total de casos positivos de coronavirus el\n"
             desc+="día i-1 (por ejemplo, ayer), ts (i) el número total de\n"
@@ -217,8 +217,8 @@ def Reporte4(request):
             reporte4=Prediccion4();
             reporte4.analizar(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max,"Departamento")
             
-            titulo="\n\n\n\n\nPredicción de mortalidad por COVID en un Departamento\n"
-            desc="Se pueden predecir como maximo 30 dias posteriores al\n"
+            titulo="\nPredicción de mortalidad por COVID en un Departamento\n"
+            desc="\n\nSe pueden predecir como maximo 30 dias posteriores al\n"
             desc+="ultimo dato,y hacer una prediccion muy lejana puede dar\n" 
             desc+="una prediccion con decremento por lo tanto la prediccion\n"
             desc+="de esta grafica tiene como maximo predecir  "+max+" dias.\n"
@@ -260,7 +260,7 @@ def Reporte5(request):
             titulo="Predicción de mortalidad por COVID en un País\n"
             # de muertes confirmadas y la linea roja representa la prediccion de muertes en dicho pais.
 
-            desc="Se realiza la prediccion de mortalidad de un pais\n"
+            desc="\nSe realiza la prediccion de mortalidad de un pais\n"
             desc+="al dia "+max+" donde la linea azul representa los casos\n"
             desc+="reales de muertes confirmadas y la linea roja representa\n"
             desc+="la prediccion de muertes en dicho pais.\n"
@@ -353,10 +353,10 @@ def Reporte7(request):
             reporte1.analizar7(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
             
             titulo="Tendencia del número de infectados por día de un País..\n"
-            desc="\n\n\nSe hace el calculo de la tendencia con regresion\n"
+            desc="\n\nSe hace el calculo de la tendencia con regresion\n"
             desc+="lineal grado 3 y una estimacion hasta "+max+" (dias/meses)"
             desc+="lo cual refleja la proyeccion de los dias posteriores\n"
-            desc+"el eje X representa el tiempo y el eje Y los\n"
+            desc+="el eje X representa el tiempo y el eje Y los\n"
             desc+="infectados."
 
             newcode=Codigo64()
@@ -441,12 +441,19 @@ def Reporte9(request):
             reporte1.analizar9(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
             
             titulo="Tendencia de la vacunación de en un País."
-
-
+            desc="\nSe obtiene la tendencia de vacunacion de un\n"
+            desc+="pais: , y se utiliza regresion lineal grado3\n"
+            desc+="ya que la tendencia no puede disminuir, esta\n"
+            desc+="tendencia solo puede mantenerse o aumentar,\n"
+            desc+="por lo tanto utiliza grado 3."
+            desc+="El eje X representa el tiempo de la columna:\n"
+            desc+= variable1+" y el eje Y utiliza los datos de la\n "
+            desc+=" columna: "+variable2
             newcode=Codigo64()
             context={
                 "titulo":titulo,
                 "codigo":newcode.obtenerCodigo(),
+                "desc":desc,
             }
             
             return render(request,'reporte.html',context)
@@ -499,7 +506,7 @@ def Reporte10(request):
                 ul+="y se determina que el pais "+variable3+" esta\n"
                 ul+="vacunando mas que "+variable2+"\n"
             titulo="Ánalisis Comparativo de Vacunación entre 2 paises. "
-            desc="Se realiza un analisis de vacunancion entre dos paises\n"
+            desc="\nSe realiza un analisis de vacunancion entre dos paises\n"
             desc+="y para el pais: \""+variable2+"\" se tiene una poblacion \n"
             desc+="de:"+str(poblacion1Total)+" y la cantidad de vacunados: "+str(infectados1)+"\n"
             desc+="con un porcentaje de vacunacion "+p1+"% \n "
@@ -553,8 +560,8 @@ def Reporte11(request):
             reporte11=Prediccion11();
             reporte11.analizar11(variable1,variable2,variable3,filtrar,columnaFiltrar,valorFiltrar,max)
             var=reporte11.infectados2
-            titulo="Porcentaje de hombres infectados por covid-19 en un País desde el primer caso activo"
-            desc="\nSe estima que el "+var+"% de \n"
+            titulo="Porcentaje de hombres infectados por covid-19 en un \nPaís desde el primer caso activo"
+            desc="\n\n\nSe estima que el "+var+"% de \n"
             desc+="infectados son hombres y le utiliza la herramienta\n"
             desc+="scikit-learn con Regresion Polinomial Grado:4\n"
             desc+="Los puntos azules representan los casos reales\n"
@@ -616,7 +623,7 @@ def Reporte12(request):
                 ul+="y se determina que el pais "+variable3+" esta\n"
                 ul+="siendo mas afectado que "+variable2+"\n"
             titulo="Ánalisis Comparativo entres 2 paises o continentes"
-            desc="Se realiza un analisis entre los dos paises o continentes\n"
+            desc="\nSe realiza un analisis entre los dos paises o continentes\n"
             desc+="y para el pais: \""+variable2+"\" se tiene una poblacion \n"
             desc+="de:"+str(poblacion1Total)+" y la cantidad de infectados: "+str(infectados1)+"\n"
             desc+="con un porcentaje de infeccion "+p1+"% \n "
@@ -699,8 +706,8 @@ def Reporte14(request):
             reporte14.analizar14(variable1,variable2,min,pais)
 
 
-            titulo="Muertes según regiones de un país - Covid 19. en "+pais+"\n"
-            desc="Hace de un calculo de las muertes por region\n"
+            titulo="Muertes según regiones de un país - Covid 19. \nen "+pais+"\n"
+            desc="\n\nHace de un calculo de las muertes por region\n"
             desc+="del pais: "+pais+" analiza los datos ingresados\n"
             desc+="y hace una estimacion en base a cada region\n"
             desc+="utiliando regresion en sklearn.\n"
@@ -738,7 +745,7 @@ def Reporte15(request):
 
 
             titulo="Tendencia de casos confirmados de Coronavirus en \nun departamento del pais "+pais+"\n"
-            desc="\n\nEl proceso de predicción se realizó mediante regresión lineal.\n"
+            desc="\n\n\nEl proceso de predicción se realizó mediante regresión lineal.\n"
             desc+="y la grafica representa la tendencia de los departamentos.\n"
             desc+="La linea roja representa la tendencia de los casos confirmados\n"
             desc+="y los puntos azules representan los casos reales.\n"
@@ -777,9 +784,6 @@ def Reporte16(request):
             min = request.POST['min']
             max = request.POST['max']
 
-            print(min)
-            print(max)
-            
             
             if(filtrar=="si"):
                 columnaFiltrar=request.POST['columnaFiltrar']
@@ -837,10 +841,10 @@ def Reporte19(request):
             reporte19=Prediccion19();
             reporte19.analizar19(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,max)
             
-            titulo="Predicción de muertes en el último día del primer año \nde infecciones en un país.\n"
+            titulo="Predicción de muertes en el último día del primer \naño de infecciones en un país.\n"
             # de muertes confirmadas y la linea roja representa la prediccion de muertes en dicho pais.
 
-            desc="\n\nSe realiza la prediccion de muertes usando\n"
+            desc="\n\n\nSe realiza la prediccion de muertes usando\n"
             desc+="usando regresion lineal polinomial grado 4\n"
             desc+="de la columna \""+variable1+"\" como eje X (tiempo)\n"
             desc+="y la columna \""+variable2+"\" como eje Y (muertes).\n"
@@ -884,7 +888,7 @@ def Reporte21(request):
 
 
             titulo="Predicciones de casos y muertes en todo el mundo\n"
-            desc="Se realiza la prediccion de casos y muertes en todo el\n"
+            desc="\n\nSe realiza la prediccion de casos y muertes en todo el\n"
             desc+="mundo y la estimacion a: \""+str(max)+"\" unidades de tiempo\n "
             desc+="la grafica muestra: \"una tendencia de crecimiento\""
             desc+="para ambas predicciones."
@@ -930,7 +934,7 @@ def Reporte22(request):
             #Como se puede apreciar en la imagen, la predicción toma una forma lineal (puntos azules) y los datos reales (puntos rojos), en realidad tienen muy poca correlación con la predicción.
             #sea positiva o negativa. El número total de casos fallecidos.
             titulo="Tasa de mortalidad por coronavirus (COVID-19) en un país\n"
-            desc="Para calcular la mortalidad necesitamos:\n"
+            desc="\n\nPara calcular la mortalidad necesitamos:\n"
             desc+="El número de casos acumulados registrados del pais,\n"
             desc+="sea positiva o negativa. El número total de casos \n"
             desc+="fallecidos.\nY se obtuvo el numero de casos confirmados: "+NoCon+"\n"
@@ -971,8 +975,9 @@ def Reporte23(request):
             titulo="Factores de muerte por COVID-19 en un país."
             desc="\n\nSegun los factores de muerte seleccionados\n"
             desc+="se clasifican en factores de vida y/o muerte\n"
-            desc+="y se agrega una barra 0-100 segun el factor de riego\n"
-            desc+="que puede tener al contraer covid."
+            desc+="y se agrega una barra 100-900 segun el factor de riesgo,\n"
+            desc+="un factor de riego cerca de 900 es propenso a fallecer"
+            desc+=" al contraer covid."
             desc+="Ademas es muy dificil predecir si es un factor de\n"
             desc+="alto riego para covid ya que estas investigaciones\n"
             desc+="requieren mas datos cientificos de cada infeccion,\n"
@@ -1076,7 +1081,7 @@ def Reporte25(request):
             #Como se puede apreciar en la imagen, la predicción toma una forma lineal (puntos azules) y los datos reales (puntos rojos), en realidad tienen muy poca correlación con la predicción.
 
             titulo="Predicción de casos confirmados por día\n"
-            desc="Se hace una predicción con regresión lineal de Sklearn,\n"
+            desc="\n\nSe hace una predicción con regresión lineal de Sklearn,\n"
             desc+="para determinar el número de casos confirmados que\n"
             desc+="deberían existir para cada fecha.\n"
             desc+="Como se puede apreciar en la imagen, la predicción \n(puntos azules) y los datos reales (puntos rojos)\n"
