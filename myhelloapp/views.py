@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import pathlib
 from myhelloapp.Clases.Prediccion16 import Prediccion16
+from myhelloapp.Clases.Prediccion21 import Prediccion21
 import numpy as np
 import os
 import csv
@@ -847,7 +848,55 @@ def Reporte19(request):
     # except:
     #     return render(request,'principal.html')    
     
-    
+def Reporte21(request):
+    #try:
+        if request.method == "POST":
+            variable2 = request.POST['variable2']
+            variable3 = request.POST['variable3']
+            max = request.POST['max']
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
+            
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
+            
+            
+            #casos
+            reporte21A=Prediccion21();
+            reporte21A.analizar21(variable2,filtrar,columnaFiltrar,valorFiltrar,max,"Predicciones de casos en todo el mundo","img")
+            #muertes
+            reporte21B=Prediccion21();
+            reporte21B.analizar21(variable3,filtrar,columnaFiltrar,valorFiltrar,max,"Predicciones de muertes en todo el mundo","img1")
+
+
+            titulo="Predicciones de casos y muertes en todo el mundo\n"
+            desc="Se realiza la prediccion de casos y muertes en todo el\n"
+            desc+="mundo y la estimacion a: \""+str(max)+"\" unidades de tiempo\n "
+            desc+="la grafica muestra: \"una tendencia de crecimiento\""
+            desc+="para ambas predicciones."
+            desc+="Se realiza la regresion polinomial grado 4"
+            desc+=""
+            desc+=""
+            desc+=""
+
+            newcode=Codigo64()
+            newcode2=Codigo64()
+            context={
+                "titulo":titulo,
+                "codigo":newcode.obtenerCodigo(),
+                "codigo2":newcode2.obtenerCodigo2(),
+                "desc":desc,
+            }
+            
+            return render(request,'reporte12.html',context)
+        else:
+            
+            return render(request,'principal.html')
+            
+    # except:
+    #     return render(request,'principal.html')    
     
     
     
@@ -908,8 +957,13 @@ def Reporte23(request):
 
 
             titulo="Factores de muerte por COVID-19 en un país."
-            desc="\n\nEl proceso de predicción se realizó mediante regresión lineal.\n"
-            desc+=" y la grafica representa la tendencia de los departamentos seleccionados"
+            desc="\n\nSegun los factores de muerte seleccionados\n"
+            desc+="se clasifican en factores de vida y/o muerte\n"
+            desc+="y se agrega una barra 0-100 segun el factor de riego\n"
+            desc+="que puede tener al contraer covid."
+            desc+="Ademas es muy dificil predecir si es un factor de\n"
+            desc+="alto riego para covid ya que estas investigaciones\n"
+            desc+="requieren mas datos cientificos de cada infeccion,\n"
             
 
 

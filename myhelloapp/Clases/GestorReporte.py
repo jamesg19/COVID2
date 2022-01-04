@@ -98,7 +98,7 @@ class GestorReporte:
         elif(tipo=="20"):
             return "20 Tasa de crecimiento de casos de COVID-19 en relación con nuevos casos diarios y tasa de muerte por COVID-19"
         elif(tipo=="21"):
-            return ""
+            return "Predicciones de casos y muertes en todo el mundo"
         elif(tipo=="22"):
             return "Tasa de mortalidad por coronavirus (COVID-19) en un país."
         elif(tipo=="23"):

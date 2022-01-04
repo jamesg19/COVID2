@@ -1,0 +1,157 @@
+{% load static%}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Reporte 21</title>
+    <link rel="stylesheet" href="{% static '/assetsNav/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static '/assetsNav/fonts/ionicons.min.css'%}">
+    <link rel="stylesheet" href="{% static '/assetsNav/css/gradient-navbar-1.css'%}">
+    <link rel="stylesheet" href="{% static '/assetsNav/css/gradient-navbar.css'%}">
+    <link rel="stylesheet" href="{% static '/assetsNav/css/styles.css'%}">
+    <link rel="stylesheet" href="{% static '/slide/slide.css'%}">
+    <script type="text/javascript" src='https://unpkg.com/xlsx/dist/shim.min.js'></script>
+    <script lang="javascript" src='https://unpkg.com/xlsx/dist/xlsx.full.min.js' ></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-dark navbar-expand-md" id="app-navbar">
+        <div class="container-fluid"><a class="navbar-brand" href="#"><i class="icon ion-ios-infinite" id="brand-logo"></i></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">First Item</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Second Item</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Third Item</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div align="center">
+        <br>
+    <h2>Reporte 21 Parametros {{titulo}}</h2>
+    <br><br>
+
+    <form action="Reporte21" enctype="multipart/form-data"  method="POST" >
+      {% csrf_token %}
+      <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+          <h4>Fecha</h4>
+          <select class="custom-select"  id="variable1" name="variable1">
+            {%for art in variable1 %}
+            <option value="{{art}}">{{art}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col">
+          <h4>Casos confirmados</h4>
+          <select class="custom-select"  id="variable2" name="variable2">
+            {%for art in variable1 %}
+            <option value="{{art}}">{{art}}</option>
+            {% endfor %}
+          </select>
+
+
+        </div>
+        <div class="col">
+          <h4>Muertes por Covid</h4>
+          <select class="custom-select"  id="variable3" name="variable3">
+            {%for art in variable1 %}
+            <option value="{{art}}">{{art}}</option>
+            {% endfor %}
+          </select>
+
+
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <br>
+    <div class="row" >
+      
+      <div class="col">
+      </div>
+      <div class="col">
+      
+          <div style="display:none" class="slidecontainer">
+            <input type="range" min="0" style="display:none" max="100" value=0 class="slider" id="min" name="min">
+            <p style="display:none" >MINIMO: <span id="demo1"></span></p>
+          </div>
+
+      
+        <div  class="slidecontainer">
+          <input type="range" min="1" max="200" value=50 class="slider" id="max" name="max">
+          <p>DIAS DE PREDICCION: <span id="demo2"></span></p>
+        </div>
+      </div>
+      <div class="col">
+      </div>
+        <script>
+            var slider1 = document.getElementById("min");
+            var output1 = document.getElementById("demo1");
+            output1.innerHTML = slider1.value;
+            
+            slider1.oninput = function() {
+              slider1.value=this.value;
+              output1.innerHTML = this.value;
+            }
+        </script>
+        <script>
+          var slider2 = document.getElementById("max");
+          var output = document.getElementById("demo2");
+          output.innerHTML = slider2.value;
+          
+          slider2.oninput = function() {
+            slider2.value=this.value;
+            output.innerHTML = this.value;
+          }
+      </script>
+    </div>
+
+
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col">
+        <h4>Desea filtar la busqueda?</h4>
+        <label for="" >SI</label>
+        <input type="radio" value="si" name="filtrar" id="filtrar" required class="filtra">
+        <label for="" >NO</label>
+        <input type="radio" value="no" name="filtrar" id="filtrar" required class="filtra">
+        <label for="columnaFiltrar" >Columna que desea filtrar</label>
+        <select class="custom-select"  id="columnaFiltrar" name="columnaFiltrar">
+          {%for art in variable1 %}
+          <option value="{{art}}">{{art}}</option>
+          {% endfor %}
+        </select>
+        <label for="columnaFiltrar" >Ingresa el parametro de filtrado</label>
+        <input class="form-control mr-sm-2" name="valorFiltrar" id="valorFiltrar" type="text" placeholder="Filtrar" aria-label="Filtrar">
+
+      </div>
+      <div class="col">
+      </div>
+    </div>
+        <br>
+        <br>
+        <input type="submit" value="Generar Reporte"/>
+    </form>
+
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    
+    <script src="{% static '/assetsNav/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+</body>
+
+</hmtl>
