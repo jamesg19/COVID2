@@ -3,6 +3,7 @@
 *.xlsx
 __pycache__
 *.idea
+*.json
 
 
 
