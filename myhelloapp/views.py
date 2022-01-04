@@ -118,7 +118,7 @@ def Reporte1(request):
 
 # PREDICCION DE INFECTADOS DE UN PAIS
 def Reporte2(request):
-    try:
+    #try:
         if request.method == "POST":
             variable1 = request.POST['variable1']
             variable2 = request.POST['variable2']
@@ -155,8 +155,8 @@ def Reporte2(request):
         else:
             return render(request,'principal.html')
             
-    except:
-        return render(request,'principal.html')
+    # except:
+    #     return render(request,'principal.html')
 
 def Reporte3(request):
     #try:
@@ -352,13 +352,18 @@ def Reporte7(request):
             reporte1=Prediccion1();
             reporte1.analizar7(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,min,max)
             
-            titulo="Tendencia del número de infectados por día de un País.."
-
+            titulo="Tendencia del número de infectados por día de un País..\n"
+            desc="\n\n\nSe hace el calculo de la tendencia con regresion\n"
+            desc+="lineal grado 3 y una estimacion hasta "+max+" (dias/meses)"
+            desc+="lo cual refleja la proyeccion de los dias posteriores\n"
+            desc+"el eje X representa el tiempo y el eje Y los\n"
+            desc+="infectados."
 
             newcode=Codigo64()
             context={
                 "titulo":titulo,
                 "codigo":newcode.obtenerCodigo(),
+                "desc":desc
             }
             
             return render(request,'reporte.html',context)
@@ -371,9 +376,9 @@ def Reporte7(request):
 
 def Reporte8(request):
     #pass
-    try:
+    #try:
         if request.method == "POST":
-            variable1 = request.POST['variable1']
+            #variable1 = request.POST['variable1']
             variable2 = request.POST['variable2']
 
             filtrar=request.POST['filtrar']
@@ -388,20 +393,27 @@ def Reporte8(request):
             reporte4.analizar8("",variable2,filtrar,columnaFiltrar,valorFiltrar,0,0,"Pais")
             
             titulo="Predicción de casos de un país para un año."
-            descripcion=""
+            desc="\n\nLa grafica muestra la prediccion con una linea\n"
+            desc+="amarilla lo cual hace una proyeccion y la\n"
+            desc+="linea azul representa los datos reales\n"
+            desc+="Se utiliza regresion lineal de grado 4 para\n"
+            desc+="hacer una estimacion ajustada a los datos reales\n"
+            desc+="para tener mejores resultados, ej eje X(Tiempo)\n"
+            desc+="y el eje Y representa los casos en "+variable2
             
             newcode=Codigo64()
             context={
                 "titulo":titulo,
                 "codigo":newcode.obtenerCodigo(),
+                "desc":desc,
             }
             
             return render(request,'reporte.html',context)
         else:
            return render(request,'principal.html') 
             
-    except:
-        return render(request,'principal.html')
+    # except:
+    #     return render(request,'principal.html')
 
 #Tendencia de la vacunación de en un País. 
 
