@@ -88,7 +88,7 @@ class GestorReporte:
         elif(tipo=="15"):
             return "Tendencia de casos confirmados de Coronavirus en un departamento de un País. "
         elif(tipo=="16"):
-            return ""
+            return "Porcentaje de muertes frente al total de casos en un país, región o continente."
         elif(tipo=="17"):
             return ""
         elif(tipo=="18"):

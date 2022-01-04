@@ -1,6 +1,6 @@
 from django.urls import path
 #from sklearn.linear_model import LinearRegression
-from .views import  procesarArchivo, Reporte1, Reporte2, Reporte3, Reporte4, Reporte5, Reporte6, Reporte7, Reporte8, Reporte9, Reporte10, Reporte11,Reporte12, Reporte13, Reporte14, Reporte15, Reporte19,Reporte22,Reporte23,Reporte24, Reporte25
+from .views import  procesarArchivo, Reporte1, Reporte2, Reporte3, Reporte4, Reporte5, Reporte6, Reporte7, Reporte8, Reporte9, Reporte10, Reporte11,Reporte12, Reporte13, Reporte14, Reporte15,Reporte16, Reporte19,Reporte22,Reporte23,Reporte24, Reporte25
 
 
 from . import views
@@ -22,6 +22,7 @@ urlpatterns =[
     path('Reporte13',Reporte13),
     path('Reporte14',Reporte14),
     path('Reporte15',Reporte15),
+    path('Reporte16',Reporte16),
     path('Reporte19',Reporte19),
     path('Reporte22',Reporte22),
     path('Reporte23',Reporte23),

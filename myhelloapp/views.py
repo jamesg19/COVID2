@@ -2,6 +2,7 @@ from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.http import JsonResponse
 import pathlib
+from myhelloapp.Clases.Prediccion16 import Prediccion16
 import numpy as np
 import os
 import csv
@@ -747,6 +748,63 @@ def Reporte15(request):
             return render(request,'principal.html')
     # except:
     #     return render(request,'principal.html') 
+    
+#Porcentaje de muertes frente al total de casos en un país, región o continente.   
+def Reporte16(request):
+    #try
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
+            pais=request.POST['pais']
+            
+            
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
+            min = request.POST['min']
+            max = request.POST['max']
+
+            print(min)
+            print(max)
+            
+            
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
+            
+            
+            reporte16=Prediccion16();
+            percentage=reporte16.analizar16(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar)
+
+
+            titulo="Porcentaje de muertes frente al total de casos en un país\n, región o continente. Pais:"+pais+"\n"
+            desc="\n\n\nSe ha estimado el porcentaje de muertes con\n"
+            desc+="los datos ingresados de la columna "+variable1+" para\n"
+            desc+="casos confimados y de la columna "+variable2+" para\n"
+            desc+="las muertes registradas."
+            desc+="Se obtuvieron un total de: "+str(reporte16.muertes)+" muertes por COVID\n"
+            desc+="un total de :"+str(reporte16.casos)+" casos confirmados de COVID\n"
+            desc+="y como resultado obtuvimos un "+percentage+"% de mortalidad.\n"
+            
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "desc":desc,
+                #"variable1":reporte14.regiones,
+                
+            }
+            
+            return render(request,'reporte16.html',context)
+        else:
+            
+            return render(request,'principal.html')
+    # except:
+    #     return render(request,'principal.html')
+    
+    
+    
+    
+    
     
 def Reporte19(request):
     #try:
