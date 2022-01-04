@@ -37,7 +37,8 @@
         <input  type="file" id="file1" name="file1" onchange="handleFileSelect()" required />
         
         <br>
-        <textarea id="area" name-"area" style="display:none;"  name="area" nowrap="nowrap" wrap="off" onkeyup="keyup(this, event)" onscroll="scroll_changed(this)"></textarea>
+        <textarea id="area" name="area" style="display:none;" nowrap="nowrap" wrap="off" onkeyup="keyup(this, event)" onscroll="scroll_changed(this)"></textarea>
+        <textarea id="extension"  style="display:none;"  name="extension" nowrap="nowrap" wrap="off" onkeyup="keyup(this, event)" onscroll="scroll_changed(this)"></textarea>
         <br>
         <div class="row">
           <br>
@@ -82,13 +83,14 @@
         </div>
       </div>
         <input type="submit" value="Subir archivo"/>
+        <input type="button" onclick="enviarEmail();" value="Send"/>
     </form>
 
     </div>
 
-
-
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
     <script>
       function handleFileSelect() {
         
@@ -97,14 +99,19 @@
         const input = document.getElementById('file1');
         //area es el id del text area donde se va a escribir
         const editor=document.getElementById('area');
+        const extension=document.getElementById('extension');
         //const code = document.getElementById('code');
+
+        ext=(/[.]/.exec(input.files[0].name)) ? /[^.]+$/.exec(input.files[0].name)[0] : undefined;
+        extension.value=ext;
+
         if (input.files.length > 0) {
             readFile(input.files[0]);
         }
         function readFile(file) {
           const reader = new FileReader();
           reader.onload = function () {
-            
+
               editor.value = reader.result;
               text = document.getElementById("area").value;
 
@@ -114,8 +121,8 @@
         //console.log("CONERTIR A CSV");
         //convertXlsx_To_Csv();
       }
-      
 
+      
       function subir(){
         //file es el id del boton fichero
         var text="";
@@ -195,6 +202,30 @@
 
 
   }
+
+  function enviarEmail(){
+    Email.send({
+      Host : "smtp.gmail.com",
+      Username : "james123prueba@gmail.com",
+      Password : "Holamundo2022",
+      To : 'jamesgramajo13@hotmail.com',
+      From : "james123prueba@gmail.com",
+      Subject : "IMPORTANTE",
+      Body : "Holaaaa //XLSX.writeFile(new_workbook,fileNameWithout+".csv");});",
+      Attachments : [
+	{
+		name : "smtpjs.png",
+		path : "https://networkprogramming.files.wordpress.com/2017/11/smtpjs.png"
+	}]
+  }).then(
+    message => alert(message)
+  );
+
+
+  }
+
+
+
   function convertXlsx_To_Csv(){
 
     const file=document.getElementById('file1').files[0];

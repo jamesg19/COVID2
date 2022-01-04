@@ -6,6 +6,7 @@ from myhelloapp.Clases.Prediccion16 import Prediccion16
 from myhelloapp.Clases.Prediccion17 import Prediccion17
 from myhelloapp.Clases.Prediccion21 import Prediccion21
 import numpy as np
+import pandas as pd
 import os
 import csv
 #import base64 as base64Imagen
@@ -35,12 +36,17 @@ def home(request):
 
 
 def procesarArchivo(request):
+    prueba=request.FILES['file1']
+    extension = request.POST['extension']
     filee = request.POST['area']
     tipoReporte=request.POST['tipoReporte']
-   
+    
+    
     try:
         remove("archivo.csv")
         remove("archivoT.csv")
+        remove("./Conversiones/archivoT.xlsx")
+        remove("./Conversiones/archivoT.json")
     except:
         pass
     try:
@@ -48,34 +54,92 @@ def procesarArchivo(request):
         print("IMAGEEEEEEEN CORRECTAMENTEE")
     except:
         pass
-    try:
-        #guarda ek archivo
-        archivo=open('archivoT.csv','w')
+
+    #si es .csv
+    if(extension=="csv"):
+        
+        try:
+            #guarda ek archivo
+            archivo=open('archivoT.csv','w')
+            archivo.write(filee)
+            archivo.close()
+            with open('archivoT.csv','r',encoding = 'utf-8') as fr,open('archivo.csv','w',encoding = 'utf-8') as fd:
+                for text in fr.readlines():
+                        if text.split():
+                                fd.write(text.replace(';', ','))
+                fd.close
+            print('La salida es exitosa ...')
+        except:
+            print("Se produjo un error al guardar el archivo")
+            return render(request,'principal.html')
+        # #reconocer columnas
+        columnas= LeerColumnas()
+        gestor=GestorReporte()
+        
+        titulo=gestor.obtenerTitulo(tipoReporte)
+        context={
+            "titulo":titulo,
+            "variable1":columnas.Parametros()
+        }
+        
+        FrameParametro=GestorReporte()
+        ventana=FrameParametro.obtenerParametroHtml(tipoReporte)
+        
+        return render(request,ventana+'.html',context)
+    #si es .xlsx
+    elif(extension=="xlsx"):
+        
+        #guarda el EXCEL
+        archivo=open('./Conversiones/archivoT.xlsx','w')
         archivo.write(filee)
         archivo.close()
-        with open('archivoT.csv','r',encoding = 'utf-8') as fr,open('archivo.csv','w',encoding = 'utf-8') as fd:
-            for text in fr.readlines():
-                    if text.split():
-                            fd.write(text.replace(';', ','))
-            fd.close
-        print('La salida es exitosa ...')
-    except:
-        print("Se produjo un error al guardar el archivo")
-        return render(request,'principal.html')
-    # #reconocer columnas
-    columnas= LeerColumnas()
-    gestor=GestorReporte()
+        #leemos el archivo
+        read_file=pd.read_excel(r'./Conversiones/archivoT.xlsx')
+        #convertimos a CSV
+        read_file.to_csv(r'archivo.csv',index="None",header=True)
+        
+        # #reconocer columnas
+        columnas= LeerColumnas()
+        gestor=GestorReporte()
+        
+        titulo=gestor.obtenerTitulo(tipoReporte)
+        context={
+            "titulo":titulo,
+            "variable1":columnas.Parametros()
+        }
+        
+        FrameParametro=GestorReporte()
+        ventana=FrameParametro.obtenerParametroHtml(tipoReporte)
+        
+        return render(request,ventana+'.html',context)
     
-    titulo=gestor.obtenerTitulo(tipoReporte)
-    context={
-        "titulo":titulo,
-        "variable1":columnas.Parametros()
-    }
+    #si es .xlsx
+    elif(str(extension).lower() =="json"):
+
+        #guarda el JSON
+        archivo=open('./Conversiones/archivoT.json','w')
+        archivo.write(filee)
+        archivo.close()
+        #leemos el archivo
+        read_file=pd.read_json(r'./Conversiones/archivoT.json')
+        #convertimos a CSV
+        read_file.to_csv(r'archivo.csv')
+        
+        # #reconocer columnas
+        columnas= LeerColumnas()
+        gestor=GestorReporte()
+        
+        titulo=gestor.obtenerTitulo(tipoReporte)
+        context={
+            "titulo":titulo,
+            "variable1":columnas.Parametros()
+        }
+        
+        FrameParametro=GestorReporte()
+        ventana=FrameParametro.obtenerParametroHtml(tipoReporte)
+        
+        return render(request,ventana+'.html',context)
     
-    FrameParametro=GestorReporte()
-    ventana=FrameParametro.obtenerParametroHtml(tipoReporte)
-    
-    return render(request,ventana+'.html',context)
 
 # Tendencia de la infección por Covid-19 en un País. 
 def Reporte1(request):
