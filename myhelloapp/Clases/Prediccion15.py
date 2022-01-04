@@ -16,6 +16,7 @@ class Prediccion15:
        
         listaColumnas=listaDepartamentos.split(sep=',')
         data = pd.read_csv('archivo.csv')
+        data=data.replace(np.nan, 0)
         LCasos=""
         contador=-1
         for ite in listaColumnas:

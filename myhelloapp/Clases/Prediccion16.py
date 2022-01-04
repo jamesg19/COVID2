@@ -15,6 +15,7 @@ class Prediccion16:
 
     def analizar16(self,casosConfirmados,Muertes,filtrar,columnaFiltrar,valorFiltrar):   
         dataTemp = pd.read_csv('archivo.csv')     
+        dataTemp=dataTemp.replace(np.nan, 0)
         
         if(filtrar=="si"):
             newData = dataTemp[columnaFiltrar] == valorFiltrar

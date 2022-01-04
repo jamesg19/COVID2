@@ -13,7 +13,7 @@ class Prediccion4:
     def analizar(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max,region):
         
         dataTemp = pd.read_csv('archivo.csv')
-        
+        dataTemp=dataTemp.replace(np.nan, 0)
         if(filtrar=="si"):
             
             #dataTemp = pd.read_csv('archivo.csv')
@@ -54,7 +54,7 @@ class Prediccion4:
     
     def analizar5(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max,region):
         dataTemp = pd.read_csv('archivo.csv')
-        
+        dataTemp=dataTemp.replace(np.nan, 0)
         if(filtrar=="si"):
             
             #dataTemp = pd.read_csv('archivo.csv')
@@ -105,7 +105,7 @@ class Prediccion4:
         
     def analizar6(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max,region):
         dataTemp = pd.read_csv('archivo.csv')
-        
+        dataTemp=dataTemp.replace(np.nan, 0)
         if(filtrar=="si"):
             
             #dataTemp = pd.read_csv('archivo.csv')
@@ -144,7 +144,7 @@ class Prediccion4:
     def analizar8(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max,region):
         
         dataTemp = pd.read_csv('archivo.csv')
-
+        dataTemp=dataTemp.replace(np.nan, 0)
         if(filtrar=="si"):
 
             #dataTemp = pd.read_csv('archivo.csv')

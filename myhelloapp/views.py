@@ -79,7 +79,7 @@ def procesarArchivo(request):
 
 # Tendencia de la infección por Covid-19 en un País. 
 def Reporte1(request):
-    try:
+    #try:
         if request.method == "POST":
             variable1 = request.POST['variable1']
             variable2 = request.POST['variable2']
@@ -112,8 +112,8 @@ def Reporte1(request):
         else:
 
             return render(request,'principal.html') 
-    except:
-        return render(request,'principal.html')
+    # except:
+    #     return render(request,'principal.html')
 
 
 

@@ -14,6 +14,7 @@ class Prediccion19:
     def analizar19(self,dias,fallecidos,filtrar,columnaFiltrar,valorFiltrar,max):
         
         dataTemp = pandass.read_csv('archivo.csv')
+        dataTemp=dataTemp.replace(np.nan, 0)
         
         if(filtrar=="si"):
 

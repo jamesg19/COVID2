@@ -13,6 +13,7 @@ class Prediccion21:
 
     def analizar21(self,infectados,filtrar,columnaFiltrar,valorFiltrar,max,titulo,img):
             dataTemp = pd.read_csv('archivo.csv')
+            dataTemp=dataTemp.replace(np.nan, 0)
             
             if(filtrar=="si"):
                 

@@ -16,6 +16,7 @@ class Prediccion25:
     def analizar25(self,resultados,positivos,filtrar,columnaFiltrar,valorFiltrar,min,max,region):
         
         dataTemp = pd.read_csv('archivo.csv')
+        dataTemp=dataTemp.replace(np.nan, 0)
 
         if(filtrar=="si"):
             

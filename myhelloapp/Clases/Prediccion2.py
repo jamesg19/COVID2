@@ -13,7 +13,7 @@ class Prediccion2:
     def analizar(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max,region):
         
         dataTemp = pd.read_csv('archivo.csv')
-        
+        dataTemp=dataTemp.replace(np.nan, 0)
         if(filtrar=="si"):
             
             #dataTemp = pd.read_csv('archivo.csv')

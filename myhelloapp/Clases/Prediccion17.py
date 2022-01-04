@@ -18,6 +18,7 @@ class Prediccion17:
     def analizar17(self,infectados,muertes,filtrar,columnaFiltrar,valorFiltrar,max):
         
         dataTemp = pandass.read_csv('archivo.csv')
+        dataTemp=dataTemp.replace(np.nan, 0)
         
         if(filtrar=="si"):
             newData = dataTemp[columnaFiltrar] == valorFiltrar

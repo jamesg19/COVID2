@@ -12,7 +12,7 @@ class Prediccion22:
     def analizar22(self,dias,confirmados,muertes):
         
         dataTemp = pandass.read_csv('archivo.csv')
-
+        dataTemp=dataTemp.replace(np.nan, 0)
         X = np.asarray(dataTemp[dias].array)[:,np.newaxis]
         y = np.asarray(dataTemp[confirmados].array)[:,np.newaxis]
         z = np.asarray(dataTemp[muertes].array)[:,np.newaxis]

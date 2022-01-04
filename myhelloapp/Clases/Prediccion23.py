@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import plot_confusion_matrix
 import matplotlib.pyplot as plt
 import pandas as pd
-
+import numpy as np
 
 class Prediccion23:
     
@@ -13,7 +13,7 @@ class Prediccion23:
     
     def analizar23(self,sexo,edad, muertes,ListaColumnas):
         data = pd.read_csv('archivo.csv')
-        
+        data=data.replace(np.nan, 0)
         listaFactores=[sexo]
         listaFactores.append(edad)
 

@@ -16,7 +16,7 @@ class Prediccion24:
     def analizar24(self,test,casos,filtrar,columnaFiltrar,valorFiltrar):
         
         dataTemp = pandass.read_csv('archivo.csv')
-        
+        dataTemp=dataTemp.replace(np.nan, 0)
         if(filtrar=="si"):
 
             newData = dataTemp[columnaFiltrar] == valorFiltrar

@@ -12,7 +12,9 @@ class Prediccion12:
 
     def analizar12(self,dias,infectados1,filtrar,columnaFiltrar,valorFiltrar,max,img):
         
-        dataTemp = pd.read_csv('archivo.csv')     
+        dataTemp = pd.read_csv('archivo.csv')  
+        dataTemp=dataTemp.replace(np.nan, 0)
+           
         if(filtrar=="si"):
             newData = dataTemp[columnaFiltrar] == valorFiltrar
             data = dataTemp[newData]

@@ -11,7 +11,7 @@ class Prediccion13:
     
     def analizar13(self,Muertes,Positivos,Edades,min,pais):   
         dataTemp = pandass.read_csv('archivo.csv')
-
+        dataTemp=dataTemp.replace(np.nan, 0)
         x = dataTemp[Muertes]
         y = dataTemp[Positivos]
         z=dataTemp[Edades]
@@ -44,6 +44,8 @@ class Prediccion13:
     def analizar14(self,Regiones,Muertes,min,pais):
         
         dataTemp = pandass.read_csv('archivo.csv')
+        dataTemp=dataTemp.replace(np.nan, 0)
+        
         x = dataTemp[Regiones]
         y = dataTemp[Muertes]
         
@@ -69,10 +71,10 @@ class Prediccion13:
         
         xx=np.array(data)
         #print(xx)
-        kmeans = KMeans(n_clusters=3)
-        kmeans.fit(xx)
+        scikitt = KMeans(n_clusters=3)
+        scikitt.fit(xx)
         try:
-            plt.scatter(xx[:,0], xx[:,1], c=kmeans.labels_, cmap='rainbow')
+            plt.scatter(xx[:,0], xx[:,1], c=scikitt.labels_, cmap='rainbow')
             plt.title("Muertes según regiones de un país - Covid 19."+pais)
             plt.xlabel('Regiones')
             plt.ylabel('Total fallecidos')

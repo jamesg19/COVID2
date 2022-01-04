@@ -17,7 +17,7 @@ class Prediccion1:
     def analizar(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max):
         
         dataTemp = pd.read_csv('archivo.csv')
-        
+        dataTemp=dataTemp.replace(np.nan, 0)
         if(filtrar=="si"):
             
             #dataTemp = pd.read_csv('archivo.csv')
@@ -26,11 +26,17 @@ class Prediccion1:
             
             dataTemp=data
             print(dataTemp)
-            x = np.asarray(data[dias].array)[:,np.newaxis]
-            y = np.asarray(data[infectados].array)[:,np.newaxis]
+            # x = np.asarray(data[dias].array)[:,np.newaxis]
+            # y = np.asarray(data[infectados].array)[:,np.newaxis]
         
-            
-        x = np.asarray(dataTemp[dias].array)[:,np.newaxis]
+        xTemp = np.asarray(dataTemp[dias])
+        cases=[]
+        var=0
+        for i in xTemp:
+            var+=1
+            cases.append(var) 
+               
+        x = np.asarray(cases)[:,np.newaxis]
         y = np.asarray(dataTemp[infectados].array)[:,np.newaxis]
         
         plt.scatter(x,y)
@@ -82,7 +88,7 @@ class Prediccion1:
     def analizar9(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max):
         
         dataTemp = pd.read_csv('archivo.csv')
-        
+        dataTemp=dataTemp.replace(np.nan, 0)
         if(filtrar=="si"):
             
             #dataTemp = pd.read_csv('archivo.csv')
@@ -147,7 +153,7 @@ class Prediccion1:
     def analizar7(self,dias,infectados,filtrar,columnaFiltrar,valorFiltrar,min,max):
         
         dataTemp = pd.read_csv('archivo.csv')
-        
+        dataTemp=dataTemp.replace(np.nan, 0)
         if(filtrar=="si"):
             
             #dataTemp = pd.read_csv('archivo.csv')
