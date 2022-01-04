@@ -1,4 +1,4 @@
-# Manual Tecnico
+# Manual Tecnico Quetzal Data Science COVID-19
 
 ## Tabla de Contenido
 **[Introducción](#introduccion)**
@@ -16,7 +16,7 @@
 ## Introducción <a name="introduccion"></a>
 
 Coronavirus Data Analysis with Scikit-Learn [Enlace](https://github.com/jamesg19/COVID2) , cuenta con una variedad de tipos de analisis respecto a la pandemia global que sufrimos al dia de hoy y este proyecto hace prediccion y tendencias 
-de las reguntas que nos hacemos dia a dia sobre que pasará con el avance de la pantemia y sus nuevas cepas.
+de las reguntas que nos hacemos dia a dia sobre que pasará con el avance de la pandemia y sus nuevas cepas.
 
 ## Objetivos Generales <a name="obgenerales"></a>
 
@@ -33,7 +33,7 @@ de las reguntas que nos hacemos dia a dia sobre que pasará con el avance de la 
 
 Es aplicacion web que permita a cualquier usuario hacer el calculo de tendencia de la pandemia y predicciones en base a los datos recopilados que ingrese el usuario, acepta archivos .csv.
 
-![img_patron_interprete](https://github.com/jamesg19/COMPILADORES_DICIEMBRE_2021/blob/main/img_patron.png)
+![img_patron_interprete](https://miro.medium.com/max/1400/1*4SOqS2FLHf9Of5A5tOcD6Q.png)
 
 Donde el proyecto se encuentra estructurado de la siguiente manera
 
