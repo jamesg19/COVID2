@@ -2,7 +2,6 @@ from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
-from werkzeug.utils import secure_filename
 import pathlib
 from io import StringIO
 from myhelloapp.Clases.Prediccion16 import Prediccion16
