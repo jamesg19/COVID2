@@ -90,7 +90,7 @@ class GestorReporte:
         elif(tipo=="16"):
             return "Porcentaje de muertes frente al total de casos en un país, región o continente."
         elif(tipo=="17"):
-            return ""
+            return "Tasa de comportamiento de casos activos en relación al número de muertes en un continente."
         elif(tipo=="18"):
             return ""
         elif(tipo=="19"):

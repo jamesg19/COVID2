@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import pathlib
 from myhelloapp.Clases.Prediccion16 import Prediccion16
+from myhelloapp.Clases.Prediccion17 import Prediccion17
 from myhelloapp.Clases.Prediccion21 import Prediccion21
 import numpy as np
 import os
@@ -812,6 +813,54 @@ def Reporte16(request):
             }
             
             return render(request,'reporte16.html',context)
+        else:
+            
+            return render(request,'principal.html')
+    # except:
+    #     return render(request,'principal.html')
+    
+    
+def Reporte17(request):
+    #try
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
+            pais=request.POST['pais']
+            
+            
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
+            min = request.POST['min']
+            max = request.POST['max']
+
+            
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
+            
+            
+            reporte17=Prediccion17();
+            reporte17.analizar17(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar,300)
+
+
+            titulo="Tasa de comportamiento de casos activos en relación al \nnúmero de muertes en un continente. \n"
+            desc="\n\n\nSe determina que la tasa de comportamiento\n"
+            desc+="en relacion de casos activos y numero de muertes\n"
+            desc+="es de: "+str(round((reporte17.tasa),2))+"% con realacion\n"
+            desc+="a las muertes por el continente: "+pais+"\n"
+            desc+="Donde el eje X representa las muertes de dicho\n"
+            desc+="continente y el eje Y los casos activos."
+            newcode=Codigo64()
+            context={
+                "titulo":titulo,
+                "desc":desc,
+                "codigo":newcode.obtenerCodigo(),
+                #"variable1":reporte14.regiones,
+                
+            }
+            
+            return render(request,'reporte.html',context)
         else:
             
             return render(request,'principal.html')
