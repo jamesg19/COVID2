@@ -847,7 +847,7 @@ def Reporte17(request):
             titulo="Tasa de comportamiento de casos activos en relación al \nnúmero de muertes en un continente. \n"
             desc="\n\n\nSe determina que la tasa de comportamiento\n"
             desc+="en relacion de casos activos y numero de muertes\n"
-            desc+="es de: "+str(round((reporte17.tasa),2))+"% con realacion\n"
+            desc+="es de: "+str(round((reporte17.tasa),2))+"% (caso Actico/muertes) con realacion\n"
             desc+="a las muertes por el continente: "+pais+"\n"
             desc+="Donde el eje X representa las muertes de dicho\n"
             desc+="continente y el eje Y los casos activos."
