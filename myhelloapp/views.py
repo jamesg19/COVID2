@@ -2,6 +2,7 @@ from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.http import JsonResponse
 import pathlib
+import numpy as np
 import os
 import csv
 #import base64 as base64Imagen
@@ -19,6 +20,7 @@ from myhelloapp.Clases.Prediccion19 import Prediccion19
 from myhelloapp.Clases.Prediccion2 import Prediccion2
 from myhelloapp.Clases.Prediccion22 import Prediccion22
 from myhelloapp.Clases.Prediccion23 import Prediccion23
+from myhelloapp.Clases.Prediccion24 import Prediccion24
 from myhelloapp.Clases.Prediccion25 import Prediccion25
 from myhelloapp.Clases.Prediccion4 import Prediccion4
 # Create your views here.
@@ -872,6 +874,54 @@ def Reporte23(request):
     
     
     
+def Reporte24(request):
+    #try:
+        if request.method == "POST":
+            variable1 = request.POST['variable1']
+            variable2 = request.POST['variable2']
+            pais = request.POST['pais']
+            filtrar=request.POST['filtrar']
+            columnaFiltrar=""
+            valorFiltrar=""
+            
+            
+            if(filtrar=="si"):
+                columnaFiltrar=request.POST['columnaFiltrar']
+                valorFiltrar=request.POST['valorFiltrar']
+            
+            reporte24=Prediccion24();
+            reporte24.analizar24(variable1,variable2,filtrar,columnaFiltrar,valorFiltrar)
+            datos=reporte24.resultados
+            
+            
+            titulo="Comparación entre el número de casos detectados y el \número de pruebas de un país "+pais
+            desc="\n\n\nSe realiza un analisis de casos y pruebas realizadas\n"
+            desc+="En la siguiente tabla se puede observar la cantidad\n"
+            desc+="de test realizados y la cantidad de infectados\n"
+            desc+="La cantidad de evidencia en relación al número\n"
+            desc+="de casos positivos, pero en algunas fases podría\n"
+            desc+="intensificarse para obtener un dato más realista."
+            desc+="La cantidad de pruebas positivas y casos detectados\n"
+            desc+="es: RELEVANTE\n"
+            
+
+            newcode=Codigo64()
+
+            context={
+                "titulo":titulo,
+                "desc":desc,
+                "codigo":newcode.obtenerCodigo(),
+                "variable1":np.round(datos, decimals=0) ,
+
+            }
+            
+            return render(request,'reporte24.html',context)
+        else:
+            return render(request,'principal.html')
+            
+    # except:
+    #     return render(request,'principal.html')
+       
     
     
     
